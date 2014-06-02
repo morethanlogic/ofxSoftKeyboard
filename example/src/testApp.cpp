@@ -7,7 +7,8 @@ void testApp::setup(){
 	messageFont.loadFont("vag.ttf", 32);
 	keyboardFont.loadFont("vag.ttf", 12);
 	
-	keyboard.setup( this, OFXSK_LAYOUT_KEYBOARD_FULL, &keyboardFont );
+	layout = OFXSK_LAYOUT_KEYPAD;
+	keyboard.setup( this, layout, &keyboardFont );
 	bUseKeyboardFont = true;
 
 	sprintf(eventString, "framerate: %f\nright-click to toggle font", ofGetFrameRate());
@@ -34,7 +35,7 @@ void testApp::draw(){
 	ofSetColor(255,122,220);
 	messageFont.drawString(eventString, 100,200);
 	
-	
+
 	ofSetHexColor(0xffffff);
 	messageFont.drawString(message, 98,298);
 	
@@ -51,6 +52,16 @@ void testApp::keyPressed(int key) {
 
 //--------------------------------------------------------------
 void testApp::keyReleased(int key) {
+	
+	if (key == OF_KEY_RIGHT) {
+		layout = (ofxSoftKeyboardLayout)((layout + 1) % (int)OFXSK_NUM_LAYOUTS);
+		keyboard.setLayout(layout);
+		return;
+	}
+	else if (key == OF_KEY_LEFT) {
+		layout = (ofxSoftKeyboardLayout)(layout - 1);
+		if (layout < 0) layout = (ofxSoftKeyboardLayout)(layout + OFXSK_NUM_LAYOUTS);
+	}
 	
 	sprintf(eventString, "keyReleased = %c (ASCII %i)", key, key);
 	

@@ -21,7 +21,8 @@ class testApp : public ofBaseApp{
 		void windowResized(int w, int h);
 
 		ofxSoftKeyboard keyboard;
-	
+		ofxSoftKeyboardLayout layout;
+
 		ofTrueTypeFont messageFont;
 		char eventString[255];
 		string message;
