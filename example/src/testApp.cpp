@@ -26,14 +26,14 @@ void testApp::draw(){
 	float w = vagRounded.stringWidth(eventString);
 	float h = vagRounded.stringHeight(eventString);
 	
-	ofSetColor(0xffffff);
+	ofSetHexColor(0xffffff);
 	vagRounded.drawString(eventString, 98,198);
 	
 	ofSetColor(255,122,220);
 	vagRounded.drawString(eventString, 100,200);
 	
 	
-	ofSetColor(0xffffff);
+	ofSetHexColor(0xffffff);
 	vagRounded.drawString(message, 98,298);
 	
 	ofSetColor(255,122,220);

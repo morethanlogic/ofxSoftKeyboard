@@ -21,11 +21,11 @@ ofxSoftKey::ofxSoftKey(int _key, testApp* _testapp) {
 	
 	
 	
-	textColor = 0x000000;;
-	textBGColor = 0xCCCCCC;
-	borderColor = 0x000000;
-	hoverColor = 0x999999;
-	clickColor = 0xFF0000;
+	textColor.setHex(0x000000);
+	textBGColor.setHex(0xCCCCCC);
+	borderColor.setHex(0x000000);
+	hoverColor.setHex(0x999999);
+	clickColor.setHex(0xFF0000);
 	isLastInRow = false;
 	
 	disableAppEvents();
@@ -124,19 +124,19 @@ ofxSoftKey& ofxSoftKey::setKey(char key) {
 }
 
 //--------------------------------------------------------------
-ofxSoftKey& ofxSoftKey::setTextColor(int c) {
+ofxSoftKey& ofxSoftKey::setTextColor(const ofColor& c) {
 	this->textColor = c;
 	return *this;
 }
 
 //--------------------------------------------------------------
-ofxSoftKey& ofxSoftKey::setTextBGColor(int c) {
+ofxSoftKey& ofxSoftKey::setTextBGColor(const ofColor& c) {
 	this->textBGColor = c;
 	return *this;
 }
 
 //--------------------------------------------------------------
-ofxSoftKey& ofxSoftKey::setBorderColor(int c) {
+ofxSoftKey& ofxSoftKey::setBorderColor(const ofColor& c) {
 	this->borderColor = c;
 	return *this;
 }
