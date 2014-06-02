@@ -14,8 +14,13 @@
 #include "ofMain.h"
 #include "ofxSoftKey.h"
 
-#define OFXSK_LAYOUT_KEYPAD 1
-#define OFXSK_LAYOUT_KEYBOARD_FULL 2
+enum ofxSoftKeyboardLayout
+{
+	OFXSK_LAYOUT_KEYPAD = 0,
+	OFXSK_LAYOUT_KEYBOARD_FULL,
+
+	OFXSK_NUM_LAYOUTS
+};
 
 class ofBaseApp;
 
@@ -24,8 +29,8 @@ public:
 	ofxSoftKeyboard();
 	~ofxSoftKeyboard();
 
-	void setup( ofBaseApp* app, int layout, ofTrueTypeFont* font = NULL );
-	void setLayout(int layout);
+	void setup( ofBaseApp* app, ofxSoftKeyboardLayout layout, ofTrueTypeFont* font = NULL );
+	void setLayout(ofxSoftKeyboardLayout layout);
 	void setFont(ofTrueTypeFont* font);
 	void addPadding(int top, int right, int bottom, int left);
 	void reset();
