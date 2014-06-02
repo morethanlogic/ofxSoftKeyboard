@@ -61,6 +61,8 @@ void testApp::keyReleased(int key) {
 	else if (key == OF_KEY_LEFT) {
 		layout = (ofxSoftKeyboardLayout)(layout - 1);
 		if (layout < 0) layout = (ofxSoftKeyboardLayout)(layout + OFXSK_NUM_LAYOUTS);
+		keyboard.setLayout(layout);
+		return;
 	}
 	
 	sprintf(eventString, "keyReleased = %c (ASCII %i)", key, key);
