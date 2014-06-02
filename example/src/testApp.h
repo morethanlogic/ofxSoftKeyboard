@@ -22,9 +22,12 @@ class testApp : public ofBaseApp{
 
 		ofxSoftKeyboard keyboard;
 	
-		ofTrueTypeFont 	vagRounded;
+		ofTrueTypeFont messageFont;
 		char eventString[255];
 		string message;
+
+		ofTrueTypeFont keyboardFont;
+		bool bUseKeyboardFont;
 };
 
 #endif
