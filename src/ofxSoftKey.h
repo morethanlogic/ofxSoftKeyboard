@@ -25,6 +25,7 @@
 #include "ofMain.h"
 #include "ofxMSAInteractiveObject.h"
 
+typedef ofTrueTypeFont ofxSoftKeyFont;
 class ofBaseApp;
 
 class ofxSoftKey : public ofxMSAInteractiveObject {
@@ -48,7 +49,7 @@ public:
 	
 	//void setup();
 	//void update();
-	void draw();
+	void draw(ofxSoftKeyFont* font = NULL);
 	//void exit();
 	
 	//void onRollOver(int x, int y);

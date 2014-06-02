@@ -21,12 +21,18 @@ ofxSoftKeyboard::~ofxSoftKeyboard() {
 }
 
 //--------------------------------------------------------------
-void ofxSoftKeyboard::setup( ofBaseApp* _app, int layout ) {
+void ofxSoftKeyboard::setup( ofBaseApp* _app, int layout, ofxSoftKeyFont* font ) {
 	
 	app = _app;
 	setLayout(layout);
+	setFont(font);
 }
 
+//--------------------------------------------------------------
+void ofxSoftKeyboard::setFont(ofxSoftKeyFont* _font) {
+
+	font = _font;
+}
 
 //--------------------------------------------------------------
 void ofxSoftKeyboard::setLayout(int layout) {
@@ -83,7 +89,7 @@ void ofxSoftKeyboard::draw(float x, float y) {
 		xpos += keys[i]->padding[OFXSK_PADDING_LEFT];
 		
 		keys[i]->setPosition(xpos, ypos);
-		keys[i]->draw();
+		keys[i]->draw(font);
 		
 		if(keys[i]->isLastInRow) {
 
