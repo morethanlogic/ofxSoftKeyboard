@@ -93,7 +93,7 @@ ofxSoftKey& ofxSoftKey::padRight(int right) {
 
 
 //--------------------------------------------------------------
-void ofxSoftKey::draw(ofxSoftKeyFont* font) {
+void ofxSoftKey::draw(ofTrueTypeFont* font) {
 	
 	// Draw the background
 	ofFill();

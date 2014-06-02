@@ -21,7 +21,7 @@ ofxSoftKeyboard::~ofxSoftKeyboard() {
 }
 
 //--------------------------------------------------------------
-void ofxSoftKeyboard::setup( ofBaseApp* _app, int layout, ofxSoftKeyFont* font ) {
+void ofxSoftKeyboard::setup( ofBaseApp* _app, int layout, ofTrueTypeFont* font ) {
 	
 	app = _app;
 	setLayout(layout);
@@ -29,7 +29,7 @@ void ofxSoftKeyboard::setup( ofBaseApp* _app, int layout, ofxSoftKeyFont* font )
 }
 
 //--------------------------------------------------------------
-void ofxSoftKeyboard::setFont(ofxSoftKeyFont* _font) {
+void ofxSoftKeyboard::setFont(ofTrueTypeFont* _font) {
 
 	font = _font;
 }
