@@ -7,7 +7,7 @@ void testApp::setup(){
 	messageFont.loadFont("vag.ttf", 32, true, true);
 	keyboardFont.loadFont("vag.ttf", 12, true, true);
 	
-	layout = OFXSK_LAYOUT_KEYPAD;
+	layout = OFXSK_LAYOUT_KEYBOARD_FULL;
 	keyboard.setup( this, layout, &keyboardFont );
 	bUseKeyboardFont = true;
 
