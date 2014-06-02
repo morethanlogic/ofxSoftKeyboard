@@ -4,8 +4,8 @@
 void testApp::setup(){
 	ofSetFrameRate(24);
 	
-	messageFont.loadFont("vag.ttf", 32);
-	keyboardFont.loadFont("vag.ttf", 12);
+	messageFont.loadFont("vag.ttf", 32, true, true);
+	keyboardFont.loadFont("vag.ttf", 12, true, true);
 	
 	layout = OFXSK_LAYOUT_KEYPAD;
 	keyboard.setup( this, layout, &keyboardFont );
