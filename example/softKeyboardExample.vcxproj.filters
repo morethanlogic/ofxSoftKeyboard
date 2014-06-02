@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\testApp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ofxSoftKey.cpp">
+      <Filter>addons\ofxSoftKeyboard\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ofxSoftKeyboard.cpp">
+      <Filter>addons\ofxSoftKeyboard\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ofxMSAInteractiveObject\src\ofxMSAInteractiveObject.cpp">
+      <Filter>addons\ofxMSAInteractiveObject\src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{d8376475-7454-4a24-b08a-aac121d3ad6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons">
+      <UniqueIdentifier>{03e8574e-07bd-4957-9745-fd162653f768}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxSoftKeyboard">
+      <UniqueIdentifier>{13ca43ef-635f-4d2f-b00e-902f4f4dd694}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxSoftKeyboard\src">
+      <UniqueIdentifier>{c93bea0c-1f41-4707-8264-3485a847e89e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxMSAInteractiveObject">
+      <UniqueIdentifier>{6dfcdee9-c822-48ea-a35a-daeef11fa3cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxMSAInteractiveObject\src">
+      <UniqueIdentifier>{5e3b31af-b9e8-436b-81ee-268220f4cc82}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\testApp.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ofxSoftKey.h">
+      <Filter>addons\ofxSoftKeyboard\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ofxSoftKeyboard.h">
+      <Filter>addons\ofxSoftKeyboard\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ofxMSAInteractiveObject\src\ofxMSAInteractiveObject.h">
+      <Filter>addons\ofxMSAInteractiveObject\src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="icon.rc" />
+  </ItemGroup>
+</Project>
