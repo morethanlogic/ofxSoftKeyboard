@@ -62,6 +62,12 @@ ofxSoftKey::ofxSoftKey(int _key, ofBaseApp* _app) {
 	}
 }
 
+//--------------------------------------------------------------
+ofxSoftKey::~ofxSoftKey()
+{
+	delete [] padding;
+}
+
 
 #pragma mark PADDING
 

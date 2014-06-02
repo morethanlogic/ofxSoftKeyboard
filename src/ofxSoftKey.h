@@ -34,6 +34,7 @@ public:
 	int* padding;
 	
 	ofxSoftKey(int key, ofBaseApp* app);
+	~ofxSoftKey();
 
 	ofxSoftKey& setPadding(int top, int right, int bottom, int left);
 	ofxSoftKey& padLeft(int left);

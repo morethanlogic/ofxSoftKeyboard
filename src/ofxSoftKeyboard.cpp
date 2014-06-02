@@ -15,9 +15,7 @@ ofxSoftKeyboard::ofxSoftKeyboard() {
 
 //--------------------------------------------------------------
 ofxSoftKeyboard::~ofxSoftKeyboard() {
-	for(int i=0; i<keys.size(); i++) {
-		delete keys[i];
-	}
+	reset();
 }
 
 //--------------------------------------------------------------
@@ -54,6 +52,9 @@ void ofxSoftKeyboard::setLayout(int layout) {
 
 //--------------------------------------------------------------
 void ofxSoftKeyboard::reset() {
+	for(int i=0; i<keys.size(); i++) {
+		delete keys[i];
+	}
 	keys.clear();
 }
 
