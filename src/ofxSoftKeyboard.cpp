@@ -82,7 +82,7 @@ void ofxSoftKeyboard::draw(float x, float y) {
 	{
 		xpos += keys[i]->padding[OFXSK_PADDING_LEFT];
 		
-		keys[i]->setPos(xpos, ypos);
+		keys[i]->setPosition(xpos, ypos);
 		keys[i]->draw();
 		
 		if(keys[i]->isLastInRow) {
