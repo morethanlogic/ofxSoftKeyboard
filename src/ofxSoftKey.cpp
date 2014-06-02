@@ -99,7 +99,7 @@ ofxSoftKey& ofxSoftKey::padRight(int right) {
 
 
 //--------------------------------------------------------------
-void ofxSoftKey::draw() {
+void ofxSoftKey::draw(ofTrueTypeFont* font) {
 	
 	// Draw the background
 	ofFill();
@@ -114,7 +114,12 @@ void ofxSoftKey::draw() {
 	
 	// Draw the actual letter
 	ofSetColor(textColor);
-	ofDrawBitmapString(label, x+10, y+height-10);
+	if (font == NULL) {
+		ofDrawBitmapString(label, x+10, y+height-10);
+	}
+	else {
+		font->drawString(label, x+10, y+height-10);
+	}
 
 }
 

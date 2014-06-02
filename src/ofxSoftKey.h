@@ -49,7 +49,7 @@ public:
 	
 	//void setup();
 	//void update();
-	void draw();
+	void draw(ofTrueTypeFont* font = NULL);
 	//void exit();
 	
 	//void onRollOver(int x, int y);

@@ -21,10 +21,14 @@ class testApp : public ofBaseApp{
 		void windowResized(int w, int h);
 
 		ofxSoftKeyboard keyboard;
-	
-		ofTrueTypeFont 	vagRounded;
+		ofxSoftKeyboardLayout layout;
+
+		ofTrueTypeFont messageFont;
 		char eventString[255];
 		string message;
+
+		ofTrueTypeFont keyboardFont;
+		bool bUseKeyboardFont;
 };
 
 #endif

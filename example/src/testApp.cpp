@@ -4,11 +4,14 @@
 void testApp::setup(){
 	ofSetFrameRate(24);
 	
-	vagRounded.loadFont("vag.ttf", 32);
+	messageFont.loadFont("vag.ttf", 32, true, true);
+	keyboardFont.loadFont("vag.ttf", 12, true, true);
 	
-	keyboard.setup( this, OFXSK_LAYOUT_KEYBOARD_FULL );
-	
-	sprintf(eventString, "framerate: %f", ofGetFrameRate());
+	layout = OFXSK_LAYOUT_KEYBOARD_FULL;
+	keyboard.setup( this, layout, &keyboardFont );
+	bUseKeyboardFont = true;
+
+	sprintf(eventString, "framerate: %f\nright-click to toggle font", ofGetFrameRate());
 	
 	message = "";
 }
@@ -23,21 +26,21 @@ void testApp::draw(){
 
 	keyboard.draw(100, 350);
 	
-	float w = vagRounded.stringWidth(eventString);
-	float h = vagRounded.stringHeight(eventString);
+	float w = messageFont.stringWidth(eventString);
+	float h = messageFont.stringHeight(eventString);
 	
 	ofSetHexColor(0xffffff);
-	vagRounded.drawString(eventString, 98,198);
+	messageFont.drawString(eventString, 98,198);
 	
 	ofSetColor(255,122,220);
-	vagRounded.drawString(eventString, 100,200);
+	messageFont.drawString(eventString, 100,200);
 	
-	
+
 	ofSetHexColor(0xffffff);
-	vagRounded.drawString(message, 98,298);
+	messageFont.drawString(message, 98,298);
 	
 	ofSetColor(255,122,220);
-	vagRounded.drawString(message, 100,300);
+	messageFont.drawString(message, 100,300);
 
 }
 
@@ -49,6 +52,18 @@ void testApp::keyPressed(int key) {
 
 //--------------------------------------------------------------
 void testApp::keyReleased(int key) {
+	
+	if (key == OF_KEY_RIGHT) {
+		layout = (ofxSoftKeyboardLayout)((layout + 1) % (int)OFXSK_NUM_LAYOUTS);
+		keyboard.setLayout(layout);
+		return;
+	}
+	else if (key == OF_KEY_LEFT) {
+		layout = (ofxSoftKeyboardLayout)(layout - 1);
+		if (layout < 0) layout = (ofxSoftKeyboardLayout)(layout + OFXSK_NUM_LAYOUTS);
+		keyboard.setLayout(layout);
+		return;
+	}
 	
 	sprintf(eventString, "keyReleased = %c (ASCII %i)", key, key);
 	
@@ -71,7 +86,10 @@ void testApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void testApp::mousePressed(int x, int y, int button){
-
+	if (button == 2) {
+		bUseKeyboardFont ^= 1;
+		keyboard.setFont(bUseKeyboardFont? &keyboardFont : NULL);
+	}
 }
 
 //--------------------------------------------------------------
