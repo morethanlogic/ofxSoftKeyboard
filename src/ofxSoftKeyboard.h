@@ -18,6 +18,7 @@ enum ofxSoftKeyboardLayout
 {
 	OFXSK_LAYOUT_KEYPAD = 0,
 	OFXSK_LAYOUT_KEYBOARD_FULL,
+	OFXSK_LAYOUT_KEYBOARD_FULL_CAPS,
 	OFXSK_LAYOUT_KEYBOARD_FULL_FRENCH,
 	OFXSK_LAYOUT_KEYBOARD_FORM,
 	OFXSK_LAYOUT_KEYBOARD_FORM_FRENCH,
@@ -47,6 +48,9 @@ protected:
 	ofBaseApp* app;
 	ofTrueTypeFont* font;
 	vector<ofxSoftKey*> keys;
+
+	ofxSoftKeyboardLayout layout;
+	bool bShiftFlag;
 	
 };
 

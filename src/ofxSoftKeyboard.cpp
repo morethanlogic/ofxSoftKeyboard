@@ -24,6 +24,7 @@ void ofxSoftKeyboard::setup( ofBaseApp* _app, ofxSoftKeyboardLayout layout, ofTr
 	app = _app;
 	setLayout(layout);
 	setFont(font);
+	bShiftFlag = false;
 }
 
 //--------------------------------------------------------------
@@ -33,10 +34,12 @@ void ofxSoftKeyboard::setFont(ofTrueTypeFont* _font) {
 }
 
 //--------------------------------------------------------------
-void ofxSoftKeyboard::setLayout(ofxSoftKeyboardLayout layout) {
+void ofxSoftKeyboard::setLayout(ofxSoftKeyboardLayout _layout) {
 	
 	reset();
 	
+	layout = _layout;
+
 	switch(layout) {
 	
 		case OFXSK_LAYOUT_KEYPAD:
@@ -47,10 +50,18 @@ void ofxSoftKeyboard::setLayout(ofxSoftKeyboardLayout layout) {
 			break;
 			
 		case OFXSK_LAYOUT_KEYBOARD_FULL:
-			addKey('~'); addKey('1'); addKey('2'); addKey('3'); addKey('4'); addKey('5'); addKey('6'); addKey('7'); addKey('8'); addKey('9'); addKey('0'); addKey('-'); addKey('+'); addKey(OFXSK_KEY_DELETE); newRow();
-			addKey(OFXSK_KEY_TAB); addKey('q'); addKey('w'); addKey('e'); addKey('r'); addKey('t'); addKey('y'); addKey('u'); addKey('i'); addKey('o'); addKey('p'); addKey('['); addKey(']'); addKey('|'); newRow();
+			addKey('`'); addKey('1'); addKey('2'); addKey('3'); addKey('4'); addKey('5'); addKey('6'); addKey('7'); addKey('8'); addKey('9'); addKey('0'); addKey('-'); addKey('='); addKey(OFXSK_KEY_DELETE); newRow();
+			addKey(OFXSK_KEY_TAB); addKey('q'); addKey('w'); addKey('e'); addKey('r'); addKey('t'); addKey('y'); addKey('u'); addKey('i'); addKey('o'); addKey('p'); addKey('['); addKey(']'); addKey('\\'); newRow();
 			addKey(OFXSK_KEY_CAPS); ; addKey('a'); addKey('s'); addKey('d'); addKey('f'); addKey('g'); addKey('h'); addKey('j'); addKey('k'); addKey('l'); addKey(';'); addKey('\''); addKey(OFXSK_KEY_RETURN); newRow();
 			addKey(OFXSK_KEY_SHIFT); addKey('z'); addKey('x'); addKey('c'); addKey('v'); addKey('b'); addKey('n'); addKey('m'); addKey(','); addKey('.'); addKey('/'); addKey(OFXSK_KEY_SHIFT); newRow();
+			addKey(' ').padLeft(254).setSize(300, 40);
+			break;
+
+		case OFXSK_LAYOUT_KEYBOARD_FULL_CAPS:
+			addKey('~'); addKey('!'); addKey('@'); addKey('#'); addKey('$'); addKey('%'); addKey('^'); addKey('&'); addKey('*'); addKey('('); addKey(')'); addKey('_'); addKey('+'); addKey(OFXSK_KEY_DELETE); newRow();
+			addKey(OFXSK_KEY_TAB); addKey('Q'); addKey('W'); addKey('E'); addKey('R'); addKey('T'); addKey('Y'); addKey('U'); addKey('I'); addKey('O'); addKey('P'); addKey('{'); addKey('}'); addKey('|'); newRow();
+			addKey(OFXSK_KEY_CAPS); ; addKey('A'); addKey('S'); addKey('D'); addKey('F'); addKey('G'); addKey('H'); addKey('J'); addKey('K'); addKey('L'); addKey(':'); addKey('"'); addKey(OFXSK_KEY_RETURN); newRow();
+			addKey(OFXSK_KEY_SHIFT); addKey('Z'); addKey('X'); addKey('C'); addKey('V'); addKey('B'); addKey('N'); addKey('M'); addKey('<'); addKey('>'); addKey('?'); addKey(OFXSK_KEY_SHIFT); newRow();
 			addKey(' ').padLeft(254).setSize(300, 40);
 			break;
 
@@ -73,7 +84,7 @@ void ofxSoftKeyboard::setLayout(ofxSoftKeyboardLayout layout) {
 
 		case OFXSK_LAYOUT_KEYBOARD_FORM_FRENCH:
 			addKey('@'); addKey('1'); addKey('2'); addKey('3'); addKey('4'); addKey('5'); addKey('6'); addKey('7'); addKey('8'); addKey('9'); addKey('0'); addKey('-'); addKey('+'); addKey(OFXSK_KEY_DELETE); newRow();
-			addKey('�').padLeft(52); addKey('�'); addKey('�'); addKey('�'); addKey('�'); addKey('�'); addKey('�'); addKey('�'); addKey('�'); addKey('�'); addKey('�'); addKey('�'); addKey('�'); newRow();
+			//addKey('�').padLeft(52); addKey('�'); addKey('�'); addKey('�'); addKey('�'); addKey('�'); addKey('�'); addKey('�'); addKey('�'); addKey('�'); addKey('�'); addKey('�'); addKey('�'); newRow();
 			addKey(OFXSK_KEY_TAB); addKey('q'); addKey('w'); addKey('e'); addKey('r'); addKey('t'); addKey('y'); addKey('u'); addKey('i'); addKey('o'); addKey('p'); addKey('_'); addKey('*'); newRow();
 			addKey(OFXSK_KEY_CAPS); ; addKey('a'); addKey('s'); addKey('d'); addKey('f'); addKey('g'); addKey('h'); addKey('j'); addKey('k'); addKey('l'); addKey(';'); addKey('\''); addKey(OFXSK_KEY_RETURN); newRow();
 			addKey(OFXSK_KEY_SHIFT); addKey('z'); addKey('x'); addKey('c'); addKey('v'); addKey('b'); addKey('n'); addKey('m'); addKey(','); addKey('.'); addKey('/'); addKey(OFXSK_KEY_SHIFT); newRow();

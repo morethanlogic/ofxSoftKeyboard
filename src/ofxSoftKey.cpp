@@ -14,12 +14,10 @@
 #pragma mark CONSTRUCTORS
 
 //--------------------------------------------------------------
-ofxSoftKey::ofxSoftKey(int _key, ofBaseApp* _app) {
+ofxSoftKey::ofxSoftKey(int _key, ofxSoftKeyboard* _keyboard) {
 	
-	app = _app;
+	keyboard = _keyboard;
 	key = _key;
-	
-	
 	
 	textColor.setHex(0x000000);
 	textBGColor.setHex(0xCCCCCC);

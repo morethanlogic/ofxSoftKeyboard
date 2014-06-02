@@ -25,7 +25,7 @@
 #include "ofMain.h"
 #include "ofxMSAInteractiveObject.h"
 
-class ofBaseApp;
+class ofxSoftKeyboard;
 
 class ofxSoftKey : public ofxMSAInteractiveObject {
 public:
@@ -33,7 +33,7 @@ public:
 	bool isLastInRow;
 	int* padding;
 	
-	ofxSoftKey(int key, ofBaseApp* app);
+	ofxSoftKey(int key, ofxSoftKeyboard* keyboard);
 	~ofxSoftKey();
 
 	ofxSoftKey& setPadding(int top, int right, int bottom, int left);
@@ -65,7 +65,7 @@ public:
 
 protected:
 	
-	ofBaseApp* app;
+	ofxSoftKeyboard* keyboard;
 	int key;
 	string label;
 	ofColor textColor, textBGColor, borderColor, hoverColor, clickColor;
