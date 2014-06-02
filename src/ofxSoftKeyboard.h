@@ -17,14 +17,14 @@
 #define OFXSK_LAYOUT_KEYPAD 1
 #define OFXSK_LAYOUT_KEYBOARD_FULL 2
 
-class testApp;
+class ofBaseApp;
 
 class ofxSoftKeyboard   {
 public:
 	ofxSoftKeyboard();
 	~ofxSoftKeyboard();
 
-	void setup( testApp* testapp, int layout );
+	void setup( ofBaseApp* app, int layout );
 	void setLayout(int layout);
 	void addPadding(int top, int right, int bottom, int left);
 	void reset();
@@ -35,7 +35,7 @@ public:
 	
 protected:
 	
-	testApp* testapp;
+	ofBaseApp* app;
 	vector<ofxSoftKey*> keys;
 	
 };

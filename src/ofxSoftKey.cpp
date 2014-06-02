@@ -8,15 +8,15 @@
  */
 
 #include "ofxSoftKey.h"
-#include "testApp.h"
+#include "ofBaseApp.h"
 
 
 #pragma mark CONSTRUCTORS
 
 //--------------------------------------------------------------
-ofxSoftKey::ofxSoftKey(int _key, testApp* _testapp) {
+ofxSoftKey::ofxSoftKey(int _key, ofBaseApp* _app) {
 	
-	testapp = _testapp;
+	app = _app;
 	key = _key;
 	
 	
@@ -155,19 +155,19 @@ void ofxSoftKey::onPress(int x, int y, int button) {
 			
 			break;
 		case OFXSK_KEY_TAB: 
-			testapp->keyPressed('\t');
+			app->keyPressed('\t');
 			break;
 		case OFXSK_KEY_CAPS: 
 			
 			break;
 		case OFXSK_KEY_DELETE: 
-			testapp->keyPressed(OF_KEY_BACKSPACE);
+			app->keyPressed(OF_KEY_BACKSPACE);
 			break;
 		case OFXSK_KEY_RETURN: 
-			testapp->keyPressed('\n');
+			app->keyPressed('\n');
 			break;
 		default:
-			testapp->keyPressed((int)key);
+			app->keyPressed((int)key);
 			break;
 	}
 	//ofNotifyEvent(ofEvents.keyPressed, (int)key, testapp);
@@ -181,19 +181,19 @@ void ofxSoftKey::onRelease(int x, int y, int button) {
 			
 			break;
 		case OFXSK_KEY_TAB: 
-			testapp->keyReleased('\t');
+			app->keyReleased('\t');
 			break;
 		case OFXSK_KEY_CAPS: 
 			
 			break;
 		case OFXSK_KEY_DELETE: 
-			testapp->keyReleased(OF_KEY_BACKSPACE);
+			app->keyReleased(OF_KEY_BACKSPACE);
 			break;
 		case OFXSK_KEY_RETURN: 
-			testapp->keyReleased('\n');
+			app->keyReleased('\n');
 			break;
 		default:
-			testapp->keyReleased((int)key);
+			app->keyReleased((int)key);
 			break;
 	}
 	//ofNotifyEvent(ofEvents.keyReleased, (int)key, testapp));

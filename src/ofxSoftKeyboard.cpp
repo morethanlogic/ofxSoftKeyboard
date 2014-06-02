@@ -21,9 +21,9 @@ ofxSoftKeyboard::~ofxSoftKeyboard() {
 }
 
 //--------------------------------------------------------------
-void ofxSoftKeyboard::setup( testApp* _testapp, int layout ) {
+void ofxSoftKeyboard::setup( ofBaseApp* _app, int layout ) {
 	
-	testapp = _testapp;
+	app = _app;
 	setLayout(layout);
 }
 
@@ -60,7 +60,7 @@ void ofxSoftKeyboard::reset() {
 //--------------------------------------------------------------
 ofxSoftKey& ofxSoftKeyboard::addKey(int c) {
 	
-	ofxSoftKey* key = new ofxSoftKey(c, testapp );
+	ofxSoftKey* key = new ofxSoftKey(c, app );
 	key->setPadding(6, 6, 6, 6);
 	keys.push_back( key );
 	return *keys.back();
