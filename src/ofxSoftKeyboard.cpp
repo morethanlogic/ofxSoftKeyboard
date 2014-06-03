@@ -104,7 +104,7 @@ void ofxSoftKeyboard::reset() {
 //--------------------------------------------------------------
 ofxSoftKey& ofxSoftKeyboard::addKey(int c) {
 	
-	ofxSoftKey* key = new ofxSoftKey(c, app );
+	ofxSoftKey* key = new ofxSoftKey(c, this);
 	key->setPadding(6, 6, 6, 6);
 	keys.push_back( key );
 	return *keys.back();
@@ -137,5 +137,65 @@ void ofxSoftKeyboard::draw(float x, float y) {
 		} else {
 			xpos += keys[i]->width + keys[i]->padding[OFXSK_PADDING_RIGHT];
 		}
+	}
+}
+
+//--------------------------------------------------------------
+void ofxSoftKeyboard::keyPressed(int key)
+{
+    switch(key) {
+		case OFXSK_KEY_SHIFT:
+			
+			break;
+            
+		case OFXSK_KEY_TAB:
+			app->keyPressed('\t');
+			break;
+            
+		case OFXSK_KEY_CAPS:
+			
+			break;
+            
+		case OFXSK_KEY_DELETE:
+			app->keyPressed(OF_KEY_BACKSPACE);
+			break;
+            
+		case OFXSK_KEY_RETURN:
+			app->keyPressed('\n');
+			break;
+            
+		default:
+			app->keyPressed((int)key);
+			break;
+	}
+}
+
+//--------------------------------------------------------------
+void ofxSoftKeyboard::keyReleased(int key)
+{
+    switch(key) {
+		case OFXSK_KEY_SHIFT:
+			
+            break;
+            
+		case OFXSK_KEY_TAB:
+			app->keyReleased('\t');
+			break;
+            
+		case OFXSK_KEY_CAPS:
+			
+			break;
+            
+		case OFXSK_KEY_DELETE:
+			app->keyReleased(OF_KEY_BACKSPACE);
+			break;
+            
+		case OFXSK_KEY_RETURN:
+			app->keyReleased('\n');
+			break;
+            
+		default:
+			app->keyReleased((int)key);
+			break;
 	}
 }

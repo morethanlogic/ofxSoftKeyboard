@@ -42,6 +42,8 @@ public:
 	ofxSoftKey& addKey(int c);
 	void newRow();
 	
+    void keyPressed(int key);
+    void keyReleased(int key);
 	
 protected:
 	

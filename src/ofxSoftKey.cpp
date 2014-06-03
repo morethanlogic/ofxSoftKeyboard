@@ -8,8 +8,8 @@
  */
 
 #include "ofxSoftKey.h"
-#include "ofBaseApp.h"
 
+#include "ofxSoftKeyboard.h"
 
 #pragma mark CONSTRUCTORS
 
@@ -156,56 +156,15 @@ ofxSoftKey& ofxSoftKey::setBorderColor(const ofColor& c) {
 
 
 //--------------------------------------------------------------
-void ofxSoftKey::onPress(int x, int y, int button) {
-	
-	
-	switch(key) {
-		case OFXSK_KEY_SHIFT:
-			
-			break;
-		case OFXSK_KEY_TAB: 
-			app->keyPressed('\t');
-			break;
-		case OFXSK_KEY_CAPS: 
-			
-			break;
-		case OFXSK_KEY_DELETE: 
-			app->keyPressed(OF_KEY_BACKSPACE);
-			break;
-		case OFXSK_KEY_RETURN: 
-			app->keyPressed('\n');
-			break;
-		default:
-			app->keyPressed((int)key);
-			break;
-	}
-	//ofNotifyEvent(ofEvents.keyPressed, (int)key, testapp);
+void ofxSoftKey::onPress(int x, int y, int button)
+{	
+    keyboard->keyPressed(key);
 }
 
 //--------------------------------------------------------------
-void ofxSoftKey::onRelease(int x, int y, int button) {
-	
-	switch(key) {
-		case OFXSK_KEY_SHIFT:
-			
-			break;
-		case OFXSK_KEY_TAB: 
-			app->keyReleased('\t');
-			break;
-		case OFXSK_KEY_CAPS: 
-			
-			break;
-		case OFXSK_KEY_DELETE: 
-			app->keyReleased(OF_KEY_BACKSPACE);
-			break;
-		case OFXSK_KEY_RETURN: 
-			app->keyReleased('\n');
-			break;
-		default:
-			app->keyReleased((int)key);
-			break;
-	}
-	//ofNotifyEvent(ofEvents.keyReleased, (int)key, testapp));
+void ofxSoftKey::onRelease(int x, int y, int button)
+{
+    keyboard->keyReleased(key);
 }
 
 //--------------------------------------------------------------
