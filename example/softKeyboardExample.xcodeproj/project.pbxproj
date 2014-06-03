@@ -64,8 +64,6 @@
 		A64281601470B94900A4CD8B /* ofxSoftKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxSoftKey.h; sourceTree = "<group>"; };
 		A64281611470B94900A4CD8B /* ofxSoftKeyboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxSoftKeyboard.cpp; sourceTree = "<group>"; };
 		A64281621470B94900A4CD8B /* ofxSoftKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxSoftKeyboard.h; sourceTree = "<group>"; };
-		A64281951470B96500A4CD8B /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
-		A64281961470B96500A4CD8B /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		A64281981470B96500A4CD8B /* ofxMSAInteractiveObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMSAInteractiveObject.cpp; sourceTree = "<group>"; };
 		A64281991470B96500A4CD8B /* ofxMSAInteractiveObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMSAInteractiveObject.h; sourceTree = "<group>"; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
@@ -139,8 +137,6 @@
 		A642816C1470B96500A4CD8B /* ofxMSAInteractiveObject */ = {
 			isa = PBXGroup;
 			children = (
-				A64281951470B96500A4CD8B /* LICENSE.txt */,
-				A64281961470B96500A4CD8B /* README */,
 				A64281971470B96500A4CD8B /* src */,
 			);
 			name = ofxMSAInteractiveObject;
@@ -268,6 +264,8 @@
 /* Begin PBXProject section */
 		E4B69B4C0A3A1720003C02F2 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "softKeyboardExample" */;
 			compatibilityVersion = "Xcode 2.4";
 			developmentRegion = English;
