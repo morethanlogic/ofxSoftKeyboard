@@ -25,22 +25,31 @@
 #include "ofMain.h"
 #include "ofxMSAInteractiveObject.h"
 
+//--------------------------------------------------------------
 class ofxSoftKeyboard;
 
-class ofxSoftKey : public ofxMSAInteractiveObject {
+//--------------------------------------------------------------
+class ofxSoftKey
+: public ofxMSAInteractiveObject
+{
 public:
-	
 	bool isLastInRow;
 	int* padding;
 	
 	ofxSoftKey(int key, ofxSoftKeyboard* keyboard);
+	ofxSoftKey(int key0, int key1, ofxSoftKeyboard* keyboard);
+    
 	~ofxSoftKey();
 
 	ofxSoftKey& setPadding(int top, int right, int bottom, int left);
 	ofxSoftKey& padLeft(int left);
 	ofxSoftKey& padRight(int right);
 	
-	ofxSoftKey& setKey(const char key);
+	ofxSoftKey& setKey(int key);
+    ofxSoftKey& setKey(int key0, int key1);
+    
+    ofxSoftKey& setModifier(bool bModifier);
+    
 	ofxSoftKey& setTextColor(const ofColor& c);
 	ofxSoftKey& setTextBGColor(const ofColor& c);
 	ofxSoftKey& setBorderColor(const ofColor& c);
@@ -64,10 +73,14 @@ public:
 	//void keyReleased( int key );
 
 protected:
-	
+    void init(int key0, int key1, ofxSoftKeyboard* keyboard);
+    
 	ofxSoftKeyboard* keyboard;
-	int key;
-	string label;
+	
+    int key[2];
+	string label[2];
+    bool bModifier;
+    
 	ofColor textColor, textBGColor, borderColor, hoverColor, clickColor;
 	
 	

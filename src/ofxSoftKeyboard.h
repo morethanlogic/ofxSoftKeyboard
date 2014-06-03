@@ -18,7 +18,6 @@ enum ofxSoftKeyboardLayout
 {
 	OFXSK_LAYOUT_KEYPAD = 0,
 	OFXSK_LAYOUT_KEYBOARD_FULL,
-	OFXSK_LAYOUT_KEYBOARD_FULL_CAPS,
 	OFXSK_LAYOUT_KEYBOARD_FULL_FRENCH,
 	OFXSK_LAYOUT_KEYBOARD_FORM,
 	OFXSK_LAYOUT_KEYBOARD_FORM_FRENCH,
@@ -39,7 +38,8 @@ public:
 	void addPadding(int top, int right, int bottom, int left);
 	void reset();
 	void draw(float x, float y);
-	ofxSoftKey& addKey(int c);
+	ofxSoftKey& addKey(int key0);
+	ofxSoftKey& addKey(int key0, int key1);
 	void newRow();
 	
     void keyPressed(int key);
@@ -52,7 +52,8 @@ protected:
 	vector<ofxSoftKey*> keys;
 
 	ofxSoftKeyboardLayout layout;
-	bool bShiftFlag;
+	bool bShiftModifier;
+    bool bCapsModifier;
 	
 };
 
