@@ -8,8 +8,7 @@
  */
 
 
-#ifndef _OFX_SOFTKEYBOARD
-#define _OFX_SOFTKEYBOARD
+#pragma once
 
 #include "ofMain.h"
 #include "ofxSoftKey.h"
@@ -25,7 +24,8 @@ enum ofxSoftKeyboardLayout
 	OFXSK_NUM_LAYOUTS
 };
 
-class ofxSoftKeyboard   {
+class ofxSoftKeyboard   
+{
 public:
 	ofxSoftKeyboard();
 	~ofxSoftKeyboard();
@@ -52,5 +52,3 @@ protected:
     bool bCapsModifier;
 	
 };
-
-#endif

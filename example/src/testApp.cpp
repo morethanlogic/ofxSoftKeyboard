@@ -2,6 +2,7 @@
 
 //--------------------------------------------------------------
 void testApp::setup(){
+
 	ofSetFrameRate(24);
 	
 	messageFont.loadFont("vag.ttf", 32, true, true);
@@ -87,6 +88,7 @@ void testApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void testApp::mousePressed(int x, int y, int button){
+
 	if (button == 2) {
 		bUseKeyboardFont ^= 1;
 		keyboard.setFont(bUseKeyboardFont? &keyboardFont : NULL);
