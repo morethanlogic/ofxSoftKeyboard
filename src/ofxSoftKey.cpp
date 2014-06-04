@@ -9,27 +9,24 @@
 
 #include "ofxSoftKey.h"
 
-#include "ofxSoftKeyboard.h"
-
 #pragma mark CONSTRUCTORS
 
 //--------------------------------------------------------------
-ofxSoftKey::ofxSoftKey(int key, ofxSoftKeyboard* keyboard)
+ofxSoftKey::ofxSoftKey(int key)
 {
-    init(key, toupper(key), keyboard);
+    init(key, toupper(key));
 }
 
 //--------------------------------------------------------------
-ofxSoftKey::ofxSoftKey(int key0, int key1, ofxSoftKeyboard* keyboard)
+ofxSoftKey::ofxSoftKey(int key0, int key1)
 {
-    init(key0, key1, keyboard);
+    init(key0, key1);
 }
 
 //--------------------------------------------------------------
-void ofxSoftKey::init(int key0, int key1, ofxSoftKeyboard *keyboard)
+void ofxSoftKey::init(int key0, int key1)
 {
-	this->keyboard = keyboard;
-    setKey(key0, key1);
+	setKey(key0, key1);
     
     bModifier = false;
 	
@@ -200,16 +197,23 @@ ofxSoftKey& ofxSoftKey::setBorderColor(const ofColor& c) {
 //--------------------------------------------------------------
 void ofxSoftKey::onPress(int x, int y, int button)
 {	
-    keyboard->keyPressed(key[bModifier]);
+    ofKeyEventArgs args;
+	args.type = ofKeyEventArgs::Pressed;
+	args.key = key[bModifier];
+	ofNotifyEvent(ofEvents().keyPressed, args, this);
 }
 
 //--------------------------------------------------------------
 void ofxSoftKey::onRelease(int x, int y, int button)
 {
-    keyboard->keyReleased(key[bModifier]);
+    ofKeyEventArgs args;
+	args.type = ofKeyEventArgs::Released;
+	args.key = key[bModifier];
+	ofNotifyEvent(ofEvents().keyReleased, args, this);
 }
 
 //--------------------------------------------------------------
-void ofxSoftKey::onReleaseOutside(int x, int y, int button) {
+void ofxSoftKey::onReleaseOutside(int x, int y, int button) 
+{
 
 }

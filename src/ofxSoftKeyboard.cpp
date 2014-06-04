@@ -9,12 +9,18 @@
 
 #include "ofxSoftKeyboard.h"
 
+//--------------------------------------------------------------
 ofxSoftKeyboard::ofxSoftKeyboard() {
-	
+
+	ofAddListener(ofEvents().keyPressed, this, &ofxSoftKeyboard::keyPressed);
+	ofAddListener(ofEvents().keyReleased, this, &ofxSoftKeyboard::keyReleased);
 }
 
 //--------------------------------------------------------------
 ofxSoftKeyboard::~ofxSoftKeyboard() {
+
+	ofRemoveListener(ofEvents().keyPressed, this, &ofxSoftKeyboard::keyPressed);
+	ofRemoveListener(ofEvents().keyReleased, this, &ofxSoftKeyboard::keyReleased);
 	reset();
 }
 
@@ -97,7 +103,7 @@ void ofxSoftKeyboard::reset() {
 //--------------------------------------------------------------
 ofxSoftKey& ofxSoftKeyboard::addKey(int key0)
 {
-	ofxSoftKey* key = new ofxSoftKey(key0, this);
+	ofxSoftKey* key = new ofxSoftKey(key0);
 	key->setPadding(6, 6, 6, 6);
 	keys.push_back(key);
 	return *keys.back();
@@ -106,7 +112,7 @@ ofxSoftKey& ofxSoftKeyboard::addKey(int key0)
 //--------------------------------------------------------------
 ofxSoftKey& ofxSoftKeyboard::addKey(int key0, int key1)
 {
-    ofxSoftKey* key = new ofxSoftKey(key0, key1, this);
+    ofxSoftKey* key = new ofxSoftKey(key0, key1);
 	key->setPadding(6, 6, 6, 6);
 	keys.push_back(key);
 	return *keys.back();
@@ -143,18 +149,15 @@ void ofxSoftKeyboard::draw(float x, float y) {
 }
 
 //--------------------------------------------------------------
-void ofxSoftKeyboard::keyPressed(int key)
+void ofxSoftKeyboard::keyPressed(ofKeyEventArgs& args)
 {
-    ofKeyEventArgs args;
-	args.type = ofKeyEventArgs::Pressed;
-	args.key = key;
-	ofNotifyEvent(ofEvents().keyPressed, args, this);
+    
 }
 
 //--------------------------------------------------------------
-void ofxSoftKeyboard::keyReleased(int key)
+void ofxSoftKeyboard::keyReleased(ofKeyEventArgs& args)
 {
-    switch (key) {
+    switch (args.key) {
 		case OF_KEY_SHIFT:
 			bCapsModifier = false;
 			bShiftModifier ^= 1;
@@ -174,13 +177,14 @@ void ofxSoftKeyboard::keyReleased(int key)
 		default:
 			if (bShiftModifier) {
                 // Unset shift before returning.
-                keyReleased(OF_KEY_SHIFT);
+				bCapsModifier = false;
+				bShiftModifier = false;
+				for (int i = 0; i < keys.size(); i++) {
+					keys[i]->setModifier(bShiftModifier);
+				}
             }
 			break;
 	}
 
-	ofKeyEventArgs args;
-	args.type = ofKeyEventArgs::Released;
-	args.key = key;
-	ofNotifyEvent(ofEvents().keyReleased, args, this);
+	
 }

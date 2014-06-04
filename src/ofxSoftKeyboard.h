@@ -40,8 +40,8 @@ public:
 	ofxSoftKey& addKey(int key0, int key1);
 	void newRow();
 	
-    void keyPressed(int key);
-    void keyReleased(int key);
+    void keyPressed(ofKeyEventArgs& args);
+    void keyReleased(ofKeyEventArgs& args);
 	
 protected:
 	ofTrueTypeFont* font;

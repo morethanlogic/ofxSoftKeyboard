@@ -9,7 +9,7 @@ void testApp::setup(){
 	keyboardFont.loadFont("vag.ttf", 12, true, true);
 	
 	layout = OFXSK_LAYOUT_KEYBOARD_FULL;
-	keyboard.setup( this, layout, &keyboardFont );
+	keyboard.setup(layout, &keyboardFont);
 	bUseKeyboardFont = true;
 
 	sprintf(eventString, "framerate: %f\nright-click to toggle font", ofGetFrameRate());
