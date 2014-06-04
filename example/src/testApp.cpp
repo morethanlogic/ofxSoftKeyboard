@@ -67,9 +67,10 @@ void testApp::keyReleased(int key) {
 	
 	sprintf(eventString, "keyReleased = %c (ASCII %i)", key, key);
 	
-	if(key == OF_KEY_BACKSPACE) {
+	if(key == OF_KEY_BACKSPACE || key == OF_KEY_DEL) {
 		message = message.substr(0, message.size()-1);
-	} else {
+	} 
+	else {
 		message += (char)key;
 	}
 }

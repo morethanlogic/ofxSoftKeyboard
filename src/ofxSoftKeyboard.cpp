@@ -19,9 +19,8 @@ ofxSoftKeyboard::~ofxSoftKeyboard() {
 }
 
 //--------------------------------------------------------------
-void ofxSoftKeyboard::setup( ofBaseApp* _app, ofxSoftKeyboardLayout layout, ofTrueTypeFont* font ) {
+void ofxSoftKeyboard::setup(ofxSoftKeyboardLayout layout, ofTrueTypeFont* font) {
 	
-	app = _app;
 	setLayout(layout);
 	setFont(font);
     
@@ -52,36 +51,36 @@ void ofxSoftKeyboard::setLayout(ofxSoftKeyboardLayout _layout) {
 			break;
 			
 		case OFXSK_LAYOUT_KEYBOARD_FULL:
-			addKey('`', '~'); addKey('1', '!'); addKey('2', '@'); addKey('3', '#'); addKey('4', '$'); addKey('5', '%'); addKey('6', '^'); addKey('7', '&'); addKey('8', '*'); addKey('9', '('); addKey('0', ')'); addKey('-', '_'); addKey('=', '+'); addKey(OFXSK_KEY_DELETE); newRow();
-			addKey(OFXSK_KEY_TAB); addKey('q'); addKey('w'); addKey('e'); addKey('r'); addKey('t'); addKey('y'); addKey('u'); addKey('i'); addKey('o'); addKey('p'); addKey('[', '{'); addKey(']', '}'); addKey('\\', '|'); newRow();
-			addKey(OFXSK_KEY_CAPS); ; addKey('a'); addKey('s'); addKey('d'); addKey('f'); addKey('g'); addKey('h'); addKey('j'); addKey('k'); addKey('l'); addKey(';', ':'); addKey('\'', '"'); addKey(OFXSK_KEY_RETURN); newRow();
-			addKey(OFXSK_KEY_SHIFT); addKey('z'); addKey('x'); addKey('c'); addKey('v'); addKey('b'); addKey('n'); addKey('m'); addKey(',', '<'); addKey('.', '>'); addKey('/', '?'); addKey(OFXSK_KEY_SHIFT); newRow();
+			addKey('`', '~'); addKey('1', '!'); addKey('2', '@'); addKey('3', '#'); addKey('4', '$'); addKey('5', '%'); addKey('6', '^'); addKey('7', '&'); addKey('8', '*'); addKey('9', '('); addKey('0', ')'); addKey('-', '_'); addKey('=', '+'); addKey(OF_KEY_DEL); newRow();
+			addKey(OF_KEY_TAB); addKey('q'); addKey('w'); addKey('e'); addKey('r'); addKey('t'); addKey('y'); addKey('u'); addKey('i'); addKey('o'); addKey('p'); addKey('[', '{'); addKey(']', '}'); addKey('\\', '|'); newRow();
+			addKey(OFXSK_KEY_CAPS); ; addKey('a'); addKey('s'); addKey('d'); addKey('f'); addKey('g'); addKey('h'); addKey('j'); addKey('k'); addKey('l'); addKey(';', ':'); addKey('\'', '"'); addKey(OF_KEY_RETURN); newRow();
+			addKey(OF_KEY_SHIFT); addKey('z'); addKey('x'); addKey('c'); addKey('v'); addKey('b'); addKey('n'); addKey('m'); addKey(',', '<'); addKey('.', '>'); addKey('/', '?'); addKey(OF_KEY_SHIFT); newRow();
 			addKey(' ').padLeft(254).setSize(300, 40);
 			break;
 
 		case OFXSK_LAYOUT_KEYBOARD_FULL_FRENCH:
-			addKey('`', '~'); addKey('1', '!'); addKey('2', '@'); addKey('3', '#'); addKey('4', '$'); addKey('5', '%'); addKey('6', '^'); addKey('7', '&'); addKey('8', '*'); addKey('9', '('); addKey('0', ')'); addKey('-', '_'); addKey('=', '+'); addKey(OFXSK_KEY_DELETE); newRow();
+			addKey('`', '~'); addKey('1', '!'); addKey('2', '@'); addKey('3', '#'); addKey('4', '$'); addKey('5', '%'); addKey('6', '^'); addKey('7', '&'); addKey('8', '*'); addKey('9', '('); addKey('0', ')'); addKey('-', '_'); addKey('=', '+'); addKey(OF_KEY_DEL); newRow();
 			addKey('à', 'À').padLeft(52); addKey('â', 'Â'); addKey('ç', 'Ç'); addKey('é', 'É'); addKey('è', 'È'); addKey('ê', 'Ê'); addKey('ë', 'Ë'); addKey('ï', 'Ï'); addKey('î', 'Î'); addKey('ô', 'Ô'); addKey('ù', 'Ù'); addKey('û', 'Û'); addKey('ü', 'Ü'); newRow();
-			addKey(OFXSK_KEY_TAB); addKey('q'); addKey('w'); addKey('e'); addKey('r'); addKey('t'); addKey('y'); addKey('u'); addKey('i'); addKey('o'); addKey('p'); addKey('[', '{'); addKey(']', '}'); addKey('\\', '|'); newRow();
-			addKey(OFXSK_KEY_CAPS); ; addKey('a'); addKey('s'); addKey('d'); addKey('f'); addKey('g'); addKey('h'); addKey('j'); addKey('k'); addKey('l'); addKey(';', ':'); addKey('\'', '"'); addKey(OFXSK_KEY_RETURN); newRow();
-			addKey(OFXSK_KEY_SHIFT); addKey('z'); addKey('x'); addKey('c'); addKey('v'); addKey('b'); addKey('n'); addKey('m'); addKey(',', '<'); addKey('.', '>'); addKey('/', '?'); addKey(OFXSK_KEY_SHIFT); newRow();
+			addKey(OF_KEY_TAB); addKey('q'); addKey('w'); addKey('e'); addKey('r'); addKey('t'); addKey('y'); addKey('u'); addKey('i'); addKey('o'); addKey('p'); addKey('[', '{'); addKey(']', '}'); addKey('\\', '|'); newRow();
+			addKey(OFXSK_KEY_CAPS); ; addKey('a'); addKey('s'); addKey('d'); addKey('f'); addKey('g'); addKey('h'); addKey('j'); addKey('k'); addKey('l'); addKey(';', ':'); addKey('\'', '"'); addKey(OF_KEY_RETURN); newRow();
+			addKey(OF_KEY_SHIFT); addKey('z'); addKey('x'); addKey('c'); addKey('v'); addKey('b'); addKey('n'); addKey('m'); addKey(',', '<'); addKey('.', '>'); addKey('/', '?'); addKey(OF_KEY_SHIFT); newRow();
 			addKey(' ').padLeft(254).setSize(300, 40);
 			break;
 
 		case OFXSK_LAYOUT_KEYBOARD_FORM:
-			addKey('1').padLeft(52); addKey('2'); addKey('3'); addKey('4'); addKey('5'); addKey('6'); addKey('7'); addKey('8'); addKey('9'); addKey('0'); addKey('-'); addKey('+'); addKey(OFXSK_KEY_DELETE); newRow();
-			addKey(OFXSK_KEY_TAB); addKey('q'); addKey('w'); addKey('e'); addKey('r'); addKey('t'); addKey('y'); addKey('u'); addKey('i'); addKey('o'); addKey('p'); addKey('_'); addKey('*'); newRow();
-			addKey(OFXSK_KEY_CAPS); ; addKey('a'); addKey('s'); addKey('d'); addKey('f'); addKey('g'); addKey('h'); addKey('j'); addKey('k'); addKey('l'); addKey(';'); addKey('\''); addKey(OFXSK_KEY_RETURN); newRow();
-			addKey(OFXSK_KEY_SHIFT); addKey('z'); addKey('x'); addKey('c'); addKey('v'); addKey('b'); addKey('n'); addKey('m'); addKey(','); addKey('.'); addKey('@'); addKey(OFXSK_KEY_SHIFT); newRow();
+			addKey('1').padLeft(52); addKey('2'); addKey('3'); addKey('4'); addKey('5'); addKey('6'); addKey('7'); addKey('8'); addKey('9'); addKey('0'); addKey('-'); addKey('+'); addKey(OF_KEY_DEL); newRow();
+			addKey(OF_KEY_TAB); addKey('q'); addKey('w'); addKey('e'); addKey('r'); addKey('t'); addKey('y'); addKey('u'); addKey('i'); addKey('o'); addKey('p'); addKey('_'); addKey('*'); newRow();
+			addKey(OFXSK_KEY_CAPS); ; addKey('a'); addKey('s'); addKey('d'); addKey('f'); addKey('g'); addKey('h'); addKey('j'); addKey('k'); addKey('l'); addKey(';'); addKey('\''); addKey(OF_KEY_RETURN); newRow();
+			addKey(OF_KEY_SHIFT); addKey('z'); addKey('x'); addKey('c'); addKey('v'); addKey('b'); addKey('n'); addKey('m'); addKey(','); addKey('.'); addKey('@'); addKey(OF_KEY_SHIFT); newRow();
 			addKey(' ').padLeft(254).setSize(300, 40);
 			break;
 
 		case OFXSK_LAYOUT_KEYBOARD_FORM_FRENCH:
-			addKey('1').padLeft(52); addKey('2'); addKey('3'); addKey('4'); addKey('5'); addKey('6'); addKey('7'); addKey('8'); addKey('9'); addKey('0'); addKey('-'); addKey('+'); addKey(OFXSK_KEY_DELETE); newRow();
+			addKey('1').padLeft(52); addKey('2'); addKey('3'); addKey('4'); addKey('5'); addKey('6'); addKey('7'); addKey('8'); addKey('9'); addKey('0'); addKey('-'); addKey('+'); addKey(OF_KEY_DEL); newRow();
 			addKey('à', 'À').padLeft(52); addKey('â', 'Â'); addKey('ç', 'Ç'); addKey('é', 'É'); addKey('è', 'È'); addKey('ê', 'Ê'); addKey('ë', 'Ë'); addKey('ï', 'Ï'); addKey('î', 'Î'); addKey('ô', 'Ô'); addKey('ù', 'Ù'); addKey('û', 'Û'); addKey('ü', 'Ü'); newRow();
-			addKey(OFXSK_KEY_TAB); addKey('q'); addKey('w'); addKey('e'); addKey('r'); addKey('t'); addKey('y'); addKey('u'); addKey('i'); addKey('o'); addKey('p'); addKey('_'); addKey('*'); newRow();
-			addKey(OFXSK_KEY_CAPS); ; addKey('a'); addKey('s'); addKey('d'); addKey('f'); addKey('g'); addKey('h'); addKey('j'); addKey('k'); addKey('l'); addKey(';'); addKey('\''); addKey(OFXSK_KEY_RETURN); newRow();
-			addKey(OFXSK_KEY_SHIFT); addKey('z'); addKey('x'); addKey('c'); addKey('v'); addKey('b'); addKey('n'); addKey('m'); addKey(','); addKey('.'); addKey('@'); addKey(OFXSK_KEY_SHIFT); newRow();
+			addKey(OF_KEY_TAB); addKey('q'); addKey('w'); addKey('e'); addKey('r'); addKey('t'); addKey('y'); addKey('u'); addKey('i'); addKey('o'); addKey('p'); addKey('_'); addKey('*'); newRow();
+			addKey(OFXSK_KEY_CAPS); ; addKey('a'); addKey('s'); addKey('d'); addKey('f'); addKey('g'); addKey('h'); addKey('j'); addKey('k'); addKey('l'); addKey(';'); addKey('\''); addKey(OF_KEY_RETURN); newRow();
+			addKey(OF_KEY_SHIFT); addKey('z'); addKey('x'); addKey('c'); addKey('v'); addKey('b'); addKey('n'); addKey('m'); addKey(','); addKey('.'); addKey('@'); addKey(OF_KEY_SHIFT); newRow();
 			addKey(' ').padLeft(254).setSize(300, 40);
 			break;
 	}
@@ -146,48 +145,23 @@ void ofxSoftKeyboard::draw(float x, float y) {
 //--------------------------------------------------------------
 void ofxSoftKeyboard::keyPressed(int key)
 {
-    switch(key) {
-		case OFXSK_KEY_SHIFT:
-            
-			break;
-            
-		case OFXSK_KEY_TAB:
-			app->keyPressed('\t');
-			break;
-            
-		case OFXSK_KEY_CAPS:
-			
-			break;
-            
-		case OFXSK_KEY_DELETE:
-			app->keyPressed(OF_KEY_BACKSPACE);
-			break;
-            
-		case OFXSK_KEY_RETURN:
-			app->keyPressed('\n');
-			break;
-            
-		default:
-			app->keyPressed((int)key);
-			break;
-	}
+    ofKeyEventArgs args;
+	args.type = ofKeyEventArgs::Pressed;
+	args.key = key;
+	ofNotifyEvent(ofEvents().keyPressed, args, this);
 }
 
 //--------------------------------------------------------------
 void ofxSoftKeyboard::keyReleased(int key)
 {
     switch (key) {
-		case OFXSK_KEY_SHIFT:
+		case OF_KEY_SHIFT:
 			bCapsModifier = false;
 			bShiftModifier ^= 1;
             for (int i = 0; i < keys.size(); i++) {
                 keys[i]->setModifier(bShiftModifier);
             }
             break;
-            
-		case OFXSK_KEY_TAB:
-			app->keyReleased('\t');
-			break;
             
 		case OFXSK_KEY_CAPS:
 			bShiftModifier = false;
@@ -197,20 +171,16 @@ void ofxSoftKeyboard::keyReleased(int key)
             }
 			break;
             
-		case OFXSK_KEY_DELETE:
-			app->keyReleased(OF_KEY_BACKSPACE);
-			break;
-            
-		case OFXSK_KEY_RETURN:
-			app->keyReleased('\n');
-			break;
-            
 		default:
-			app->keyReleased((int)key);
-            if (bShiftModifier) {
+			if (bShiftModifier) {
                 // Unset shift before returning.
-                keyReleased(OFXSK_KEY_SHIFT);
+                keyReleased(OF_KEY_SHIFT);
             }
 			break;
 	}
+
+	ofKeyEventArgs args;
+	args.type = ofKeyEventArgs::Released;
+	args.key = key;
+	ofNotifyEvent(ofEvents().keyReleased, args, this);
 }

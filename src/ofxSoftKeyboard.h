@@ -25,14 +25,12 @@ enum ofxSoftKeyboardLayout
 	OFXSK_NUM_LAYOUTS
 };
 
-class ofBaseApp;
-
 class ofxSoftKeyboard   {
 public:
 	ofxSoftKeyboard();
 	~ofxSoftKeyboard();
 
-	void setup( ofBaseApp* app, ofxSoftKeyboardLayout layout, ofTrueTypeFont* font = NULL );
+	void setup(ofxSoftKeyboardLayout layout = OFXSK_LAYOUT_KEYBOARD_FULL, ofTrueTypeFont* font = NULL);
 	void setLayout(ofxSoftKeyboardLayout layout);
 	void setFont(ofTrueTypeFont* font);
 	void addPadding(int top, int right, int bottom, int left);
@@ -46,8 +44,6 @@ public:
     void keyReleased(int key);
 	
 protected:
-	
-	ofBaseApp* app;
 	ofTrueTypeFont* font;
 	vector<ofxSoftKey*> keys;
 

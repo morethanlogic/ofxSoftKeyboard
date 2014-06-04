@@ -126,13 +126,13 @@ ofxSoftKey& ofxSoftKey::setKey(int key0, int key1)
     key[1] = key1;
     
     switch (key[0]) {
-		case OFXSK_KEY_SHIFT:
+		case OF_KEY_SHIFT:
 			label[0] = "shift";
 			label[1] = "SHIFT";
 			setSize(115, 40);
 			break;
             
-		case OFXSK_KEY_TAB:
+		case OF_KEY_TAB:
 			label[0] = "tab";
 			label[1] = "TAB";
 			setSize(70, 40);
@@ -144,13 +144,14 @@ ofxSoftKey& ofxSoftKey::setKey(int key0, int key1)
 			setSize(85, 40);
 			break;
             
-		case OFXSK_KEY_DELETE:
+		case OF_KEY_BACKSPACE:
+		case OF_KEY_DEL:
 			label[0] = "delete";
             label[1] = "DELETE";
 			setSize(85, 40);
 			break;
             
-		case OFXSK_KEY_RETURN:
+		case OF_KEY_RETURN:
 			label[0] = "return";
 			label[1] = "RETURN";
 			setSize(85, 40);

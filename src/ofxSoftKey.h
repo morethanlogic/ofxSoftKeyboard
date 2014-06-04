@@ -15,12 +15,7 @@
 #define OFXSK_PADDING_BOTTOM	2
 #define OFXSK_PADDING_LEFT		3
 
-#define OFXSK_SPECIAL_KEYS 9999
-#define OFXSK_KEY_SHIFT 10000
-#define OFXSK_KEY_TAB 10001
 #define OFXSK_KEY_CAPS 10002
-#define OFXSK_KEY_DELETE 10003
-#define OFXSK_KEY_RETURN 10004
 
 #include "ofMain.h"
 #include "ofxMSAInteractiveObject.h"
