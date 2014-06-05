@@ -12,18 +12,27 @@
 #include "ofxSoftKeyboard.h"
 
 //--------------------------------------------------------------
-ofxSoftKeyboard::ofxSoftKeyboard() {
+ofxSoftKeyboard::ofxSoftKeyboard() 
+{
+	padding = new int[4];
+	setPadding(5, 5, 5, 5);
+	bDrawFrame = true;
+	borderColor.setHex(0x000000);
+	fillColor.setHex(0x999999);
 
 	ofAddListener(ofEvents().keyPressed, this, &ofxSoftKeyboard::keyPressed);
 	ofAddListener(ofEvents().keyReleased, this, &ofxSoftKeyboard::keyReleased);
 }
 
 //--------------------------------------------------------------
-ofxSoftKeyboard::~ofxSoftKeyboard() {
-
+ofxSoftKeyboard::~ofxSoftKeyboard() 
+{
 	ofRemoveListener(ofEvents().keyPressed, this, &ofxSoftKeyboard::keyPressed);
 	ofRemoveListener(ofEvents().keyReleased, this, &ofxSoftKeyboard::keyReleased);
+
 	reset();
+
+	delete [] padding;
 }
 
 //--------------------------------------------------------------
@@ -103,6 +112,15 @@ void ofxSoftKeyboard::reset() {
 }
 
 //--------------------------------------------------------------
+void ofxSoftKeyboard::setPadding(int top, int right, int bottom, int left) 
+{
+	padding[OFXSK_PADDING_TOP] = top;
+	padding[OFXSK_PADDING_RIGHT] = right;
+	padding[OFXSK_PADDING_BOTTOM] = bottom;
+	padding[OFXSK_PADDING_LEFT] = left;
+}
+
+//--------------------------------------------------------------
 ofxSoftKey& ofxSoftKeyboard::addKey(int key0)
 {
 	ofxSoftKey* key = new ofxSoftKey(key0);
@@ -127,26 +145,50 @@ void ofxSoftKeyboard::newRow() {
 }
 
 //--------------------------------------------------------------
-void ofxSoftKeyboard::draw(float x, float y) {
-	
+void ofxSoftKeyboard::draw(float x, float y) 
+{
+	// First pass to calculate the positions and bounds.
 	int xpos = x;
 	int ypos = y;
-	
-	for(int i=0; i<keys.size(); i++)
-	{
+	for (int i = 0; i < keys.size(); i++) {
 		xpos += keys[i]->padding[OFXSK_PADDING_LEFT];
 		
 		keys[i]->setPosition(xpos, ypos);
-		keys[i]->draw(font);
 		
-		if(keys[i]->isLastInRow) {
-
-			xpos  = x;
+		if (keys[i]->isLastInRow) {
+			xpos = x;
 			ypos += keys[i]->height + keys[i]->padding[OFXSK_PADDING_BOTTOM];
-			
-		} else {
+		} 
+		else {
 			xpos += keys[i]->width + keys[i]->padding[OFXSK_PADDING_RIGHT];
 		}
+
+		if (i == 0) {
+			bounds.set(*keys[i]);
+		}
+		else {
+			bounds.growToInclude(*keys[i]);
+		}
+	}
+	
+	if (bDrawFrame) {
+		ofRectangle frameRect(bounds.x - padding[OFXSK_PADDING_LEFT],
+							  bounds.y - padding[OFXSK_PADDING_TOP],
+							  bounds.width + padding[OFXSK_PADDING_LEFT] + padding[OFXSK_PADDING_RIGHT],
+							  bounds.height + padding[OFXSK_PADDING_TOP] + padding[OFXSK_PADDING_BOTTOM]);
+		ofPushStyle();
+		ofFill();
+		ofSetColor(fillColor);
+		ofRect(frameRect);
+		ofNoFill();
+		ofSetColor(borderColor);
+		ofRect(frameRect);
+		ofPopStyle();
+	}
+
+	// Second pass to draw the keys (over the frame).
+	for (int i = 0; i < keys.size(); i++) {
+		keys[i]->draw(font);
 	}
 }
 

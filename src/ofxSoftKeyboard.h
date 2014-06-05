@@ -35,9 +35,17 @@ public:
 	void setup(ofxSoftKeyboardLayout layout = OFXSK_LAYOUT_KEYBOARD_FULL, ofTrueTypeFont* font = NULL);
 	void setLayout(ofxSoftKeyboardLayout layout);
 	void setFont(ofTrueTypeFont* font);
-	void addPadding(int top, int right, int bottom, int left);
 	void reset();
+	
+	void setPadding(int top, int right, int bottom, int left);
+	void setDrawFrame(bool bDrawFrame) { this->bDrawFrame = bDrawFrame; }
+	void setBorderColor(const ofColor& col) { borderColor = col; }
+	void setFillColor(const ofColor& col) { fillColor = col; }
+
+	const ofRectangle& getBounds() { return bounds; }
+
 	void draw(float x, float y);
+
 	ofxSoftKey& addKey(int key0);
 	ofxSoftKey& addKey(int key0, int key1);
 	void newRow();
@@ -48,6 +56,12 @@ public:
 protected:
 	ofTrueTypeFont* font;
 	vector<ofxSoftKey*> keys;
+
+	ofRectangle bounds;
+	int* padding;
+	bool bDrawFrame;
+	ofColor borderColor;
+	ofColor fillColor;
 
 	ofxSoftKeyboardLayout layout;
 	bool bShiftModifier;
