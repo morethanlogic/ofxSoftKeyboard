@@ -32,11 +32,10 @@ void ofxSoftKey::init(int key0, int key1)
     
     bModifier = false;
 	
-	textColor.setHex(0x000000);
-	textBGColor.setHex(0xCCCCCC);
-	borderColor.setHex(0x000000);
-	hoverColor.setHex(0x999999);
-	clickColor.setHex(0xFF0000);
+	textColor.set(255);
+	textBGColor.set(30);
+	borderColor.set(128);
+	hoverColor.set(128);
 	isLastInRow = false;
 	
 	disableAppEvents();

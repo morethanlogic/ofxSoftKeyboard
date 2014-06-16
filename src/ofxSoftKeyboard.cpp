@@ -17,8 +17,8 @@ ofxSoftKeyboard::ofxSoftKeyboard()
 	padding = new int[4];
 	setPadding(5, 5, 5, 5);
 	bDrawFrame = true;
-	borderColor.setHex(0x000000);
-	fillColor.setHex(0x999999);
+	borderColor.set(0, 0);
+	fillColor.setHex(30);
 
 	ofAddListener(ofEvents().keyPressed, this, &ofxSoftKeyboard::keyPressed);
 	ofAddListener(ofEvents().keyReleased, this, &ofxSoftKeyboard::keyReleased);

@@ -47,7 +47,6 @@ public:
 	ofxSoftKey& setTextBGColor(const ofColor& c);
 	ofxSoftKey& setBorderColor(const ofColor& c);
 	ofxSoftKey& setHoverColor(const ofColor& c);
-	ofxSoftKey& setClickColor(const ofColor& c);
 	
 	//void setup();
 	//void update();
@@ -72,6 +71,6 @@ protected:
 	string label[2];
     bool bModifier;
     
-	ofColor textColor, textBGColor, borderColor, hoverColor, clickColor;
+	ofColor textColor, textBGColor, borderColor, hoverColor;
 
 };
