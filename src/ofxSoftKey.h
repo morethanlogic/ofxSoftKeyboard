@@ -34,6 +34,8 @@ public:
     
 	~ofxSoftKey();
 
+	void setSize(float w, float h);
+
 	ofxSoftKey& setPadding(int top, int right, int bottom, int left);
 	ofxSoftKey& padLeft(int left);
 	ofxSoftKey& padRight(int right);
@@ -63,6 +65,8 @@ public:
 	void onReleaseOutside(int x, int y, int button);
 	//void keyPressed( int key );
 	//void keyReleased( int key );
+
+	static float scale;
 
 protected:
     void init(int key0, int key1);

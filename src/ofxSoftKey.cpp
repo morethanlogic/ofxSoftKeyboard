@@ -11,6 +11,9 @@
 
 #include "ofxSoftKey.h"
 
+//--------------------------------------------------------------
+float ofxSoftKey::scale = 1.0f;
+
 #pragma mark CONSTRUCTORS
 
 //--------------------------------------------------------------
@@ -55,23 +58,29 @@ ofxSoftKey::~ofxSoftKey()
 #pragma mark PADDING
 
 //--------------------------------------------------------------
+void ofxSoftKey::setSize(float w, float h)
+{
+	ofxMSAInteractiveObject::setSize(w * scale, h * scale);
+}
+
+//--------------------------------------------------------------
 ofxSoftKey& ofxSoftKey::setPadding(int top, int right, int bottom, int left) {
-	padding[OFXSK_PADDING_TOP] = top;
-	padding[OFXSK_PADDING_RIGHT] = right;
-	padding[OFXSK_PADDING_BOTTOM] = bottom;
-	padding[OFXSK_PADDING_LEFT] = left;
+	padding[OFXSK_PADDING_TOP] = top * scale;
+	padding[OFXSK_PADDING_RIGHT] = right * scale;
+	padding[OFXSK_PADDING_BOTTOM] = bottom * scale;
+	padding[OFXSK_PADDING_LEFT] = left * scale;
 	return *this;
 }
 
 //--------------------------------------------------------------
 ofxSoftKey& ofxSoftKey::padLeft(int left) {
-	padding[OFXSK_PADDING_LEFT] += left;
+	padding[OFXSK_PADDING_LEFT] += left * scale;
 	return *this;
 }
 	
 //--------------------------------------------------------------
 ofxSoftKey& ofxSoftKey::padRight(int right) {
-	padding[OFXSK_PADDING_RIGHT] += right;
+	padding[OFXSK_PADDING_RIGHT] += right * scale;
 	return *this;
 }
 
