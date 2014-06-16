@@ -172,17 +172,18 @@ void ofxSoftKeyboard::draw(float x, float y)
 	}
 	
 	if (bDrawFrame) {
-		ofRectangle frameRect(bounds.x - padding[OFXSK_PADDING_LEFT],
-							  bounds.y - padding[OFXSK_PADDING_TOP],
-							  bounds.width + padding[OFXSK_PADDING_LEFT] + padding[OFXSK_PADDING_RIGHT],
-							  bounds.height + padding[OFXSK_PADDING_TOP] + padding[OFXSK_PADDING_BOTTOM]);
+		bounds.x -= padding[OFXSK_PADDING_LEFT];
+		bounds.y -= padding[OFXSK_PADDING_TOP];
+		bounds.width += padding[OFXSK_PADDING_LEFT] + padding[OFXSK_PADDING_RIGHT];
+		bounds.height += padding[OFXSK_PADDING_TOP] + padding[OFXSK_PADDING_BOTTOM];
+
 		ofPushStyle();
 		ofFill();
 		ofSetColor(fillColor);
-		ofRect(frameRect);
+		ofRect(bounds);
 		ofNoFill();
 		ofSetColor(borderColor);
-		ofRect(frameRect);
+		ofRect(bounds);
 		ofPopStyle();
 	}
 
