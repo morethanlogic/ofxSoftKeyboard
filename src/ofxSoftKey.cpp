@@ -36,7 +36,7 @@ void ofxSoftKey::init(int key0, int key1)
     bModifier = false;
 	
 	textColor.set(255);
-	textBGColor.set(30);
+	textBGColor.set(20);
 	borderColor.set(128);
 	hoverColor.set(128);
 	isLastInRow = false;
