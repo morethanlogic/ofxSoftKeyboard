@@ -96,8 +96,17 @@ void ofxSoftKeyboard::setLayout(ofxSoftKeyboardLayout _layout) {
 			addKey('1').padLeft(52); addKey('2'); addKey('3'); addKey('4'); addKey('5'); addKey('6'); addKey('7'); addKey('8'); addKey('9'); addKey('0'); addKey('-'); addKey('+'); addKey(OF_KEY_BACKSPACE); newRow();
 			addKey('à', 'À').padLeft(52); addKey('â', 'Â'); addKey('ç', 'Ç'); addKey('é', 'É'); addKey('è', 'È'); addKey('ê', 'Ê'); addKey('ë', 'Ë'); addKey('ï', 'Ï'); addKey('î', 'Î'); addKey('ô', 'Ô'); addKey('ù', 'Ù'); addKey('û', 'Û'); addKey('ü', 'Ü'); newRow();
 			addKey(OF_KEY_TAB); addKey('q'); addKey('w'); addKey('e'); addKey('r'); addKey('t'); addKey('y'); addKey('u'); addKey('i'); addKey('o'); addKey('p'); addKey('_'); addKey('*'); newRow();
-			addKey(OFXSK_KEY_CAPS); ; addKey('a'); addKey('s'); addKey('d'); addKey('f'); addKey('g'); addKey('h'); addKey('j'); addKey('k'); addKey('l'); addKey(';'); addKey('\''); addKey(OF_KEY_RETURN); newRow();
+			addKey(OFXSK_KEY_CAPS); addKey('a'); addKey('s'); addKey('d'); addKey('f'); addKey('g'); addKey('h'); addKey('j'); addKey('k'); addKey('l'); addKey(';'); addKey('\''); addKey(OF_KEY_RETURN); newRow();
 			addKey(OF_KEY_SHIFT); addKey('z'); addKey('x'); addKey('c'); addKey('v'); addKey('b'); addKey('n'); addKey('m'); addKey(','); addKey('.'); addKey('@'); addKey(OF_KEY_SHIFT); newRow();
+			addKey(' ').padLeft(254).setSize(300, 40);
+			break;
+
+		case OFXSK_LAYOUT_KEYBOARD_FORM_ALL_CAPS:
+			addKey('1').padLeft(52); addKey('2'); addKey('3'); addKey('4'); addKey('5'); addKey('6'); addKey('7'); addKey('8'); addKey('9'); addKey('0'); addKey('-'); addKey('+'); addKey(OF_KEY_BACKSPACE); newRow();
+			addKey('À').padLeft(52); addKey('Â'); addKey('Ç'); addKey('É'); addKey('È'); addKey('Ê'); addKey('Ë'); addKey('Ï'); addKey('Î'); addKey('Ô'); addKey('Ù'); addKey('Û'); addKey('Ü'); newRow();
+			addKey(OF_KEY_TAB); addKey('Q'); addKey('W'); addKey('E'); addKey('R'); addKey('T'); addKey('Y'); addKey('U'); addKey('I'); addKey('O'); addKey('P'); addKey('_'); addKey('*'); newRow();
+			addKey('A').padLeft(96); addKey('S'); addKey('D'); addKey('F'); addKey('G'); addKey('H'); addKey('J'); addKey('K'); addKey('L'); addKey(';'); addKey('\''); addKey(OF_KEY_RETURN); newRow();
+			addKey('Z').padLeft(127); addKey('X'); addKey('C'); addKey('V'); addKey('B'); addKey('N'); addKey('M'); addKey(','); addKey('.'); addKey('@'); newRow();
 			addKey(' ').padLeft(254).setSize(300, 40);
 			break;
 	}
