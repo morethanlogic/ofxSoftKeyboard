@@ -67,6 +67,7 @@ public:
 	//void keyReleased( int key );
 
 	static float scale;
+    static ofColor textColor, textBGColor, borderColor, hoverColor;
 
 protected:
     void init(int key0, int key1);
@@ -75,6 +76,6 @@ protected:
 	string label[2];
     bool bModifier;
     
-	ofColor textColor, textBGColor, borderColor, hoverColor;
+	
 
 };

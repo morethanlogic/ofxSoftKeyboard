@@ -13,6 +13,10 @@
 
 //--------------------------------------------------------------
 float ofxSoftKey::scale = 1.0f;
+ofColor ofxSoftKey::textColor;
+ofColor ofxSoftKey::textBGColor;
+ofColor ofxSoftKey::borderColor;
+ofColor ofxSoftKey::hoverColor;
 
 #pragma mark CONSTRUCTORS
 
