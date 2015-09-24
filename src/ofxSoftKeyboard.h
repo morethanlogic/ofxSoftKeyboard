@@ -50,6 +50,9 @@ public:
 	ofxSoftKey& addKey(int key0);
 	ofxSoftKey& addKey(int key0, int key1);
 	void newRow();
+    
+    void enable();
+    void disable();
 	
     void keyPressed(ofKeyEventArgs& args);
     void keyReleased(ofKeyEventArgs& args);
@@ -67,5 +70,7 @@ protected:
 	ofxSoftKeyboardLayout layout;
 	bool bShiftModifier;
     bool bCapsModifier;
+    
+    bool bIsEnabled;
 	
 };

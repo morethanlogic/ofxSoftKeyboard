@@ -22,6 +22,8 @@ ofxSoftKeyboard::ofxSoftKeyboard()
 
 	ofAddListener(ofEvents().keyPressed, this, &ofxSoftKeyboard::keyPressed);
 	ofAddListener(ofEvents().keyReleased, this, &ofxSoftKeyboard::keyReleased);
+    
+    bIsEnabled = true;
 }
 
 //--------------------------------------------------------------
@@ -203,6 +205,26 @@ void ofxSoftKeyboard::draw(float x, float y)
 }
 
 //--------------------------------------------------------------
+void ofxSoftKeyboard::enable()
+{
+    bIsEnabled = true;
+    
+    for (int i = 0; i < keys.size(); i++) {
+        keys[i]->enableAllEvents();
+    }
+}
+
+//--------------------------------------------------------------
+void ofxSoftKeyboard::disable()
+{
+    bIsEnabled = false;
+    
+    for (int i = 0; i < keys.size(); i++) {
+        keys[i]->disableAllEvents();
+    }
+}
+
+//--------------------------------------------------------------
 void ofxSoftKeyboard::keyPressed(ofKeyEventArgs& args)
 {
     
@@ -211,6 +233,10 @@ void ofxSoftKeyboard::keyPressed(ofKeyEventArgs& args)
 //--------------------------------------------------------------
 void ofxSoftKeyboard::keyReleased(ofKeyEventArgs& args)
 {
+    if (!bIsEnabled) {
+        return;
+    }
+    
     switch (args.key) {
 		case OF_KEY_SHIFT:
 			bCapsModifier = false;
