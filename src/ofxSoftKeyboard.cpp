@@ -191,10 +191,10 @@ void ofxSoftKeyboard::draw(float x, float y)
 		ofPushStyle();
 		ofFill();
 		ofSetColor(fillColor);
-		ofRect(bounds);
+		ofDrawRectangle(bounds);
 		ofNoFill();
 		ofSetColor(borderColor);
-		ofRect(bounds);
+		ofDrawRectangle(bounds);
 		ofPopStyle();
 	}
 
