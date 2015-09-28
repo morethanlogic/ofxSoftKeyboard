@@ -6,7 +6,8 @@
  *  Copyright 2010 Eyebeam. All rights reserved.
  *
  *  Modified by Elie Zananiri on 14/06/04.
- *  
+ *  Modified by Hugues Bruyère on 15/09/28.
+ *
  */
 
 #include "ofxSoftKeyboard.h"
@@ -22,8 +23,11 @@ ofxSoftKeyboard::ofxSoftKeyboard()
 
 	ofAddListener(ofEvents().keyPressed, this, &ofxSoftKeyboard::keyPressed);
 	ofAddListener(ofEvents().keyReleased, this, &ofxSoftKeyboard::keyReleased);
+    ofAddListener(ofEvents().mousePressed, this, &ofxSoftKeyboard::mousePressed);
+    ofAddListener(ofEvents().mouseReleased, this, &ofxSoftKeyboard::mouseReleased);
     
     bIsEnabled = true;
+    bIsUsingForwardedMouseEvents = false;
 }
 
 //--------------------------------------------------------------
@@ -31,6 +35,8 @@ ofxSoftKeyboard::~ofxSoftKeyboard()
 {
 	ofRemoveListener(ofEvents().keyPressed, this, &ofxSoftKeyboard::keyPressed);
 	ofRemoveListener(ofEvents().keyReleased, this, &ofxSoftKeyboard::keyReleased);
+    ofRemoveListener(ofEvents().mousePressed, this, &ofxSoftKeyboard::mousePressed);
+    ofRemoveListener(ofEvents().mouseReleased, this, &ofxSoftKeyboard::mouseReleased);
 
 	reset();
 
@@ -74,7 +80,7 @@ void ofxSoftKeyboard::setLayout(ofxSoftKeyboardLayout _layout) {
 			addKey(OF_KEY_TAB); addKey('q'); addKey('w'); addKey('e'); addKey('r'); addKey('t'); addKey('y'); addKey('u'); addKey('i'); addKey('o'); addKey('p'); addKey('[', '{'); addKey(']', '}'); addKey('\\', '|'); newRow();
 			addKey(OFXSK_KEY_CAPS); ; addKey('a'); addKey('s'); addKey('d'); addKey('f'); addKey('g'); addKey('h'); addKey('j'); addKey('k'); addKey('l'); addKey(';', ':'); addKey('\'', '"'); addKey(OF_KEY_RETURN); newRow();
 			addKey(OF_KEY_SHIFT); addKey('z'); addKey('x'); addKey('c'); addKey('v'); addKey('b'); addKey('n'); addKey('m'); addKey(',', '<'); addKey('.', '>'); addKey('/', '?'); addKey(OF_KEY_SHIFT); newRow();
-			addKey(' ').padLeft(254).setSize(300, 40);
+			addKey(' ').padLeft(254).setSize(300 * ofxSoftKey::scale, 40 * ofxSoftKey::scale);
 			break;
 
 		case OFXSK_LAYOUT_KEYBOARD_FULL_FRENCH:
@@ -83,7 +89,7 @@ void ofxSoftKeyboard::setLayout(ofxSoftKeyboardLayout _layout) {
 			addKey(OF_KEY_TAB); addKey('q'); addKey('w'); addKey('e'); addKey('r'); addKey('t'); addKey('y'); addKey('u'); addKey('i'); addKey('o'); addKey('p'); addKey('[', '{'); addKey(']', '}'); addKey('\\', '|'); newRow();
 			addKey(OFXSK_KEY_CAPS); ; addKey('a'); addKey('s'); addKey('d'); addKey('f'); addKey('g'); addKey('h'); addKey('j'); addKey('k'); addKey('l'); addKey(';', ':'); addKey('\'', '"'); addKey(OF_KEY_RETURN); newRow();
 			addKey(OF_KEY_SHIFT); addKey('z'); addKey('x'); addKey('c'); addKey('v'); addKey('b'); addKey('n'); addKey('m'); addKey(',', '<'); addKey('.', '>'); addKey('/', '?'); addKey(OF_KEY_SHIFT); newRow();
-			addKey(' ').padLeft(254).setSize(300, 40);
+			addKey(' ').padLeft(254).setSize(300 * ofxSoftKey::scale, 40 * ofxSoftKey::scale);
 			break;
 
 		case OFXSK_LAYOUT_KEYBOARD_FORM:
@@ -91,7 +97,7 @@ void ofxSoftKeyboard::setLayout(ofxSoftKeyboardLayout _layout) {
 			addKey(OF_KEY_TAB); addKey('q'); addKey('w'); addKey('e'); addKey('r'); addKey('t'); addKey('y'); addKey('u'); addKey('i'); addKey('o'); addKey('p'); addKey('_'); addKey('*'); newRow();
 			addKey(OFXSK_KEY_CAPS); ; addKey('a'); addKey('s'); addKey('d'); addKey('f'); addKey('g'); addKey('h'); addKey('j'); addKey('k'); addKey('l'); addKey(';'); addKey('\''); addKey(OF_KEY_RETURN); newRow();
 			addKey(OF_KEY_SHIFT); addKey('z'); addKey('x'); addKey('c'); addKey('v'); addKey('b'); addKey('n'); addKey('m'); addKey(','); addKey('.'); addKey('@'); addKey(OF_KEY_SHIFT); newRow();
-			addKey(' ').padLeft(254).setSize(300, 40);
+            addKey(' ').padLeft(254).setSize(300 * ofxSoftKey::scale, 40 * ofxSoftKey::scale);
 			break;
 
 		case OFXSK_LAYOUT_KEYBOARD_FORM_FRENCH:
@@ -100,7 +106,7 @@ void ofxSoftKeyboard::setLayout(ofxSoftKeyboardLayout _layout) {
 			addKey(OF_KEY_TAB); addKey('q'); addKey('w'); addKey('e'); addKey('r'); addKey('t'); addKey('y'); addKey('u'); addKey('i'); addKey('o'); addKey('p'); addKey('_'); addKey('*'); newRow();
 			addKey(OFXSK_KEY_CAPS); addKey('a'); addKey('s'); addKey('d'); addKey('f'); addKey('g'); addKey('h'); addKey('j'); addKey('k'); addKey('l'); addKey(';'); addKey('\''); addKey(OF_KEY_RETURN); newRow();
 			addKey(OF_KEY_SHIFT); addKey('z'); addKey('x'); addKey('c'); addKey('v'); addKey('b'); addKey('n'); addKey('m'); addKey(','); addKey('.'); addKey('@'); addKey(OF_KEY_SHIFT); newRow();
-			addKey(' ').padLeft(254).setSize(300, 40);
+			addKey(' ').padLeft(254).setSize(300 * ofxSoftKey::scale, 40 * ofxSoftKey::scale);
 			break;
 
 		case OFXSK_LAYOUT_KEYBOARD_FORM_ALL_CAPS:
@@ -109,9 +115,16 @@ void ofxSoftKeyboard::setLayout(ofxSoftKeyboardLayout _layout) {
 			addKey(OF_KEY_TAB); addKey('Q'); addKey('W'); addKey('E'); addKey('R'); addKey('T'); addKey('Y'); addKey('U'); addKey('I'); addKey('O'); addKey('P'); addKey('_'); addKey('*'); newRow();
 			addKey('A').padLeft(96); addKey('S'); addKey('D'); addKey('F'); addKey('G'); addKey('H'); addKey('J'); addKey('K'); addKey('L'); addKey(';'); addKey('\''); addKey(OF_KEY_RETURN); newRow();
 			addKey('Z').padLeft(127); addKey('X'); addKey('C'); addKey('V'); addKey('B'); addKey('N'); addKey('M'); addKey(','); addKey('.'); addKey('@'); newRow();
-			addKey(' ').padLeft(254).setSize(300, 40);
+			addKey(' ').padLeft(254).setSize(300 * ofxSoftKey::scale, 40 * ofxSoftKey::scale);
 			break;
 	}
+}
+
+
+//--------------------------------------------------------------
+void ofxSoftKeyboard::setUsingForwardedMouseEvents(bool val)
+{
+    bIsUsingForwardedMouseEvents = val;
 }
 
 //--------------------------------------------------------------
@@ -209,9 +222,10 @@ void ofxSoftKeyboard::enable()
 {
     bIsEnabled = true;
     
-    for (int i = 0; i < keys.size(); i++) {
-        keys[i]->enableAllEvents();
-    }
+    ofAddListener(ofEvents().keyPressed, this, &ofxSoftKeyboard::keyPressed);
+    ofAddListener(ofEvents().keyReleased, this, &ofxSoftKeyboard::keyReleased);
+    ofAddListener(ofEvents().mousePressed, this, &ofxSoftKeyboard::mousePressed);
+    ofAddListener(ofEvents().mouseReleased, this, &ofxSoftKeyboard::mouseReleased);
 }
 
 //--------------------------------------------------------------
@@ -219,9 +233,10 @@ void ofxSoftKeyboard::disable()
 {
     bIsEnabled = false;
     
-    for (int i = 0; i < keys.size(); i++) {
-        keys[i]->disableAllEvents();
-    }
+    ofRemoveListener(ofEvents().keyPressed, this, &ofxSoftKeyboard::keyPressed);
+    ofRemoveListener(ofEvents().keyReleased, this, &ofxSoftKeyboard::keyReleased);
+    ofRemoveListener(ofEvents().mousePressed, this, &ofxSoftKeyboard::mousePressed);
+    ofRemoveListener(ofEvents().mouseReleased, this, &ofxSoftKeyboard::mouseReleased);
 }
 
 //--------------------------------------------------------------
@@ -267,4 +282,66 @@ void ofxSoftKeyboard::keyReleased(ofKeyEventArgs& args)
 	}
 
 	
+}
+
+//--------------------------------------------------------------
+void ofxSoftKeyboard::mousePressed(ofMouseEventArgs& args)
+{
+    if (!bIsEnabled && !bIsUsingForwardedMouseEvents) {
+        return;
+    }
+    
+    for (int i = 0; i < keys.size(); i++) {
+        if(keys[i]->inside(args.x, args.y)) {
+            keys[i]->onPress(args.x, args.y, args.button);
+        }
+    }
+}
+
+//--------------------------------------------------------------
+void ofxSoftKeyboard::mouseReleased(ofMouseEventArgs& args)
+{
+    if (!bIsEnabled && !bIsUsingForwardedMouseEvents) {
+        return;
+    }
+    
+    for (int i = 0; i < keys.size(); i++) {
+        if(keys[i]->inside(args.x, args.y)) {
+            keys[i]->onRelease(args.x, args.y, args.button);
+        }
+    }
+}
+
+//--------------------------------------------------------------
+void ofxSoftKeyboard::mouseMoved(ofMouseEventArgs& args)
+{
+    if (!bIsEnabled && !bIsUsingForwardedMouseEvents) {
+        return;
+    }
+    
+    for (int i = 0; i < keys.size(); i++) {
+        if(keys[i]->inside(args.x, args.y)) {
+            keys[i]->setIsMouseOver(true);
+        }
+        else if(keys[i]->isMouseOver()) {
+            keys[i]->setIsMouseOver(false);
+        }
+    }
+}
+
+//--------------------------------------------------------------
+void ofxSoftKeyboard::mouseDragged(ofMouseEventArgs& args)
+{
+    if (!bIsEnabled && !bIsUsingForwardedMouseEvents) {
+        return;
+    }
+    
+    for (int i = 0; i < keys.size(); i++) {
+        if(keys[i]->inside(args.x, args.y)) {
+            keys[i]->setIsMouseOver(true);
+        }
+        else if(keys[i]->isMouseOver()) {
+            keys[i]->setIsMouseOver(false);
+        }
+    }
 }

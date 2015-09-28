@@ -6,7 +6,7 @@
  *  Copyright 2010 Eyebeam. All rights reserved.
  *
  *  Modified by Elie Zananiri on 14/06/04.
- *  
+ *  Modified by Hugues Bruyère on 15/09/28.
  */
 
 
@@ -36,6 +36,7 @@ public:
 	void setup(ofxSoftKeyboardLayout layout = OFXSK_LAYOUT_KEYBOARD_FULL, ofTrueTypeFont* font = NULL);
 	void setLayout(ofxSoftKeyboardLayout layout);
 	void setFont(ofTrueTypeFont* font);
+    void setUsingForwardedMouseEvents(bool val);
 	void reset();
 	
 	void setPadding(int top, int right, int bottom, int left);
@@ -56,7 +57,13 @@ public:
 	
     void keyPressed(ofKeyEventArgs& args);
     void keyReleased(ofKeyEventArgs& args);
-	
+    
+    void mousePressed(ofMouseEventArgs& args);
+    void mouseReleased(ofMouseEventArgs& args);
+    
+    void mouseMoved(ofMouseEventArgs& args);
+    void mouseDragged(ofMouseEventArgs& args);
+    
 protected:
 	ofTrueTypeFont* font;
 	vector<ofxSoftKey*> keys;
@@ -72,5 +79,6 @@ protected:
     bool bCapsModifier;
     
     bool bIsEnabled;
+    bool bIsUsingForwardedMouseEvents;
 	
 };
