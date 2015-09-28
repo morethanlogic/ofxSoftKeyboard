@@ -6,7 +6,7 @@
  *  Copyright 2010 Eyebeam. All rights reserved.
  *
  *  Modified by Elie Zananiri on 14/06/04.
- *  
+ *  Modified by Hugues Bruyère on 15/09/28.
  */
 
 #pragma once
@@ -19,11 +19,10 @@
 #define OFXSK_KEY_CAPS 10002
 
 #include "ofMain.h"
-#include "ofxMSAInteractiveObject.h"
 
 //--------------------------------------------------------------
 class ofxSoftKey
-: public ofxMSAInteractiveObject
+: public ofRectangle
 {
 public:
 	bool isLastInRow;
@@ -34,37 +33,26 @@ public:
     
 	~ofxSoftKey();
 
-	void setSize(float w, float h);
-
 	ofxSoftKey& setPadding(int top, int right, int bottom, int left);
 	ofxSoftKey& padLeft(int left);
 	ofxSoftKey& padRight(int right);
 	
 	ofxSoftKey& setKey(int key);
     ofxSoftKey& setKey(int key0, int key1);
-    
-    ofxSoftKey& setModifier(bool bModifier);
+        
+    ofxSoftKey& setModifier(bool val);
+    ofxSoftKey& setIsMouseOver(bool val);
+    bool isMouseOver();
     
 	ofxSoftKey& setTextColor(const ofColor& c);
 	ofxSoftKey& setTextBGColor(const ofColor& c);
 	ofxSoftKey& setBorderColor(const ofColor& c);
 	ofxSoftKey& setHoverColor(const ofColor& c);
 	
-	//void setup();
-	//void update();
 	void draw(ofTrueTypeFont* font = NULL);
-	//void exit();
-	
-	//void onRollOver(int x, int y);
-	//void onRollOut();
-	//void onMouseMove(int x, int y);
-	//void onDragOver(int x, int y, int button);
-	//void onDragOutside(int x, int y, int button);
+
 	void onPress(int x, int y, int button);
 	void onRelease(int x, int y, int button);
-	void onReleaseOutside(int x, int y, int button);
-	//void keyPressed( int key );
-	//void keyReleased( int key );
 
 	static float scale;
     static ofColor textColor, textBGColor, borderColor, hoverColor;
@@ -75,6 +63,8 @@ protected:
     int key[2];
 	string label[2];
     bool bModifier;
+    
+    bool bIsMouseOver;
     
 	
 

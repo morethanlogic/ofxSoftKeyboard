@@ -6,7 +6,7 @@
  *  Copyright 2010 Eyebeam. All rights reserved.
  *
  *  Modified by Elie Zananiri on 14/06/04.
- *  
+ *  Modified by Hugues Bruyère on 15/09/28.
  */
 
 #include "ofxSoftKey.h"
@@ -38,6 +38,7 @@ void ofxSoftKey::init(int key0, int key1)
 	setKey(key0, key1);
     
     bModifier = false;
+    bIsMouseOver = false;
 	
 	textColor.set(255);
 	textBGColor.set(20);
@@ -45,8 +46,8 @@ void ofxSoftKey::init(int key0, int key1)
 	hoverColor.set(128);
 	isLastInRow = false;
 	
-	disableAppEvents();
-	enableMouseEvents();
+//	disableAppEvents();
+//	enableMouseEvents();
 	
 	padding = new int[4];
 	setPadding(5, 5, 5, 5);
@@ -60,12 +61,6 @@ ofxSoftKey::~ofxSoftKey()
 
 
 #pragma mark PADDING
-
-//--------------------------------------------------------------
-void ofxSoftKey::setSize(float w, float h)
-{
-	ofxMSAInteractiveObject::setSize(w * scale, h * scale);
-}
 
 //--------------------------------------------------------------
 ofxSoftKey& ofxSoftKey::setPadding(int top, int right, int bottom, int left) {
@@ -99,14 +94,18 @@ void ofxSoftKey::draw(ofTrueTypeFont* font) {
 	
 	// Draw the background
 	ofFill();
-	if(isMouseOver()) ofSetColor(hoverColor);
-	else ofSetColor(textBGColor);
-	ofRect(x, y, width, height);
+    if(bIsMouseOver) {
+        ofSetColor(hoverColor);
+    }
+    else {
+       ofSetColor(textBGColor);
+    }
+	ofDrawRectangle(x, y, width, height);
 	
 	// Draw the outline.
 	ofNoFill();
 	ofSetColor(borderColor);
-	ofRect( x, y, width, height );
+	ofDrawRectangle( x, y, width, height );
 	
 	// Draw the actual letter
 	ofSetColor(textColor);
@@ -140,38 +139,38 @@ ofxSoftKey& ofxSoftKey::setKey(int key0, int key1)
 		case OF_KEY_SHIFT:
 			label[0] = "shift";
 			label[1] = "SHIFT";
-			setSize(115, 40);
+			setSize(115 * scale, 40 * scale);
 			break;
             
 		case OF_KEY_TAB:
 			label[0] = "tab";
 			label[1] = "TAB";
-			setSize(70, 40);
+			setSize(70 * scale, 40 * scale);
 			break;
             
 		case OFXSK_KEY_CAPS:
 			label[0] = "caps";
             label[1] = "CAPS";
-			setSize(85, 40);
+			setSize(85 * scale, 40 * scale);
 			break;
             
 		case OF_KEY_BACKSPACE:
 		case OF_KEY_DEL:
 			label[0] = "delete";
             label[1] = "DELETE";
-			setSize(85, 40);
+			setSize(85 * scale, 40 * scale);
 			break;
             
 		case OF_KEY_RETURN:
 			label[0] = "return";
 			label[1] = "RETURN";
-			setSize(85, 40);
+			setSize(85 * scale, 40 * scale);
 			break;
             
 		default:
 			label[0] = string(1, key[0]);
 			label[1] = string(1, key[1]);
-			setSize(40, 40);
+			setSize(40 * scale, 40 * scale);
 			break;
 	}
     
@@ -179,12 +178,24 @@ ofxSoftKey& ofxSoftKey::setKey(int key0, int key1)
 }
 
 //--------------------------------------------------------------
-ofxSoftKey& ofxSoftKey::setModifier(bool bModifier)
+ofxSoftKey& ofxSoftKey::setModifier(bool val)
 {
-    this->bModifier = bModifier;
+    this->bModifier = val;
     return *this;
 }
 
+//--------------------------------------------------------------
+ofxSoftKey& ofxSoftKey::setIsMouseOver(bool val)
+{
+    this->bIsMouseOver = val;
+    return *this;
+}
+
+//--------------------------------------------------------------
+bool ofxSoftKey::isMouseOver()
+{
+    return bIsMouseOver;
+}
 //--------------------------------------------------------------
 ofxSoftKey& ofxSoftKey::setTextColor(const ofColor& c) {
 	this->textColor = c;
@@ -203,14 +214,13 @@ ofxSoftKey& ofxSoftKey::setBorderColor(const ofColor& c) {
 	return *this;
 }
 
-
-
 #pragma mark MOUSE INTERACTION
-
 
 //--------------------------------------------------------------
 void ofxSoftKey::onPress(int x, int y, int button)
 {	
+    bIsMouseOver = true;
+    
     ofKeyEventArgs args;
 	args.type = ofKeyEventArgs::Pressed;
 	args.key = key[bModifier];
@@ -220,14 +230,11 @@ void ofxSoftKey::onPress(int x, int y, int button)
 //--------------------------------------------------------------
 void ofxSoftKey::onRelease(int x, int y, int button)
 {
+    bIsMouseOver = false;
+    
     ofKeyEventArgs args;
 	args.type = ofKeyEventArgs::Released;
 	args.key = key[bModifier];
 	ofNotifyEvent(ofEvents().keyReleased, args, this);
 }
 
-//--------------------------------------------------------------
-void ofxSoftKey::onReleaseOutside(int x, int y, int button) 
-{
-
-}
