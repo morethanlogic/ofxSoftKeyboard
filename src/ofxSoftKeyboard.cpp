@@ -117,6 +117,14 @@ void ofxSoftKeyboard::setLayout(ofxSoftKeyboardLayout _layout) {
 			addKey('Z').padLeft(127); addKey('X'); addKey('C'); addKey('V'); addKey('B'); addKey('N'); addKey('M'); addKey(','); addKey('.'); addKey('@'); newRow();
 			addKey(' ').padLeft(254).setSize(300 * ofxSoftKey::scale, 40 * ofxSoftKey::scale);
 			break;
+            
+        case OFXSK_LAYOUT_KEYBOARD_LITE:
+            addKey('1').padLeft(78); addKey('2'); addKey('3'); addKey('4'); addKey('5'); addKey('6'); addKey('7'); addKey('8'); addKey('9'); addKey('0'); addKey(OF_KEY_BACKSPACE).setSize(92 * ofxSoftKey::scale, 40 * ofxSoftKey::scale); newRow();
+            addKey('q').padLeft(78); addKey('w'); addKey('e'); addKey('r'); addKey('t'); addKey('y'); addKey('u'); addKey('i'); addKey('o'); addKey('p'); addKey('-'); addKey('_'); newRow();
+            addKey('a').padLeft(78); addKey('s'); addKey('d'); addKey('f'); addKey('g'); addKey('h'); addKey('j'); addKey('k'); addKey('l'); addKey('+'); addKey('.'); addKey('@');newRow();
+            addKey('z').padLeft(182 + 25); addKey('x'); addKey('c'); addKey('v'); addKey('b'); addKey('n'); addKey('m'); newRow();
+            addKey(' ').padLeft(182 + 25).setSize(350 * ofxSoftKey::scale, 40 * ofxSoftKey::scale);
+            break;
 	}
 }
 
