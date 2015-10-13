@@ -18,6 +18,8 @@
 
 #define OFXSK_KEY_CAPS 10002
 
+#define OFXSK_KEY_DOTCOM 10100
+
 #include "ofMain.h"
 
 //--------------------------------------------------------------

@@ -167,6 +167,12 @@ ofxSoftKey& ofxSoftKey::setKey(int key0, int key1)
 			setSize(85 * scale, 40 * scale);
 			break;
             
+        case OFXSK_KEY_DOTCOM:
+            label[0] = ".com";
+            label[1] = ".COM";
+            setSize(85 * scale, 40 * scale);
+            break;
+            
 		default:
 			label[0] = string(1, key[0]);
 			label[1] = string(1, key[1]);
@@ -222,8 +228,24 @@ void ofxSoftKey::onPress(int x, int y, int button)
     bIsMouseOver = true;
     
     ofKeyEventArgs args;
-	args.type = ofKeyEventArgs::Pressed;
-	args.key = key[bModifier];
+    args.type = ofKeyEventArgs::Pressed;
+    args.key = key[bModifier];
+    
+    switch (key[0]) {
+        case OFXSK_KEY_DOTCOM:
+            args.key = 46;
+            ofNotifyEvent(ofEvents().keyPressed, args, this);
+            args.key = 99;
+            ofNotifyEvent(ofEvents().keyPressed, args, this);
+            args.key = 111;
+            ofNotifyEvent(ofEvents().keyPressed, args, this);
+            args.key = 109;
+            ofNotifyEvent(ofEvents().keyPressed, args, this);
+            
+            return;
+            break;
+    }
+
 	ofNotifyEvent(ofEvents().keyPressed, args, this);
 }
 
@@ -235,6 +257,22 @@ void ofxSoftKey::onRelease(int x, int y, int button)
     ofKeyEventArgs args;
 	args.type = ofKeyEventArgs::Released;
 	args.key = key[bModifier];
+    
+    switch (key[0]) {
+        case OFXSK_KEY_DOTCOM:
+            args.key = 46;
+            ofNotifyEvent(ofEvents().keyReleased, args, this);
+            args.key = 99;
+            ofNotifyEvent(ofEvents().keyReleased, args, this);
+            args.key = 111;
+            ofNotifyEvent(ofEvents().keyReleased, args, this);
+            args.key = 109;
+            ofNotifyEvent(ofEvents().keyReleased, args, this);
+            
+            return;
+            break;
+    }
+    
 	ofNotifyEvent(ofEvents().keyReleased, args, this);
 }
 
